@@ -1888,7 +1888,7 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
 .reviews__rating > span { display: grid; gap: 3px; }
 .reviews__rating b { color: var(--amber); font-size: 15px; letter-spacing: .12em; }
 .reviews__rating small { color: var(--muted); font-size: 11px; }
-.reviews__grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+.reviews__grid { display: grid; grid-template-columns: minmax(0, 760px); justify-content: center; gap: 16px; }
 .review-card { display: flex; flex-direction: column; min-height: 200px; padding: 22px 24px; border: 1px solid var(--line); border-radius: 17px; background: linear-gradient(140deg, #191613, #121110); transition: border-color .2s, transform .2s; }
 .review-card:hover { border-color: rgba(255,164,28,.35); transform: translateY(-3px); }
 .review-card__source { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 12px; font-weight: 600; }
