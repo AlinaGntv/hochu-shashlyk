@@ -12,6 +12,7 @@ export default defineConfig({
         menu: resolve(import.meta.dirname, 'menu.html'),
         about: resolve(import.meta.dirname, 'about.html'),
         promos: resolve(import.meta.dirname, 'promos.html'),
+        contacts: resolve(import.meta.dirname, 'contacts.html'),
       },
     },
   },

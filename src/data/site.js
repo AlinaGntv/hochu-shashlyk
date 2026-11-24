@@ -28,7 +28,7 @@ export const nav = [
   { label: 'Меню', href: '/menu.html' },
   { label: 'О нас', href: '/about.html' },
   { label: 'Акции', href: '/promos.html' },
-  { label: 'Контакты', href: '/#contacts' },
+  { label: 'Контакты', href: '/contacts.html' },
 ]
 
 // Слайды первого экрана. Первый — из макета, остальные три — заглушки.

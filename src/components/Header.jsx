@@ -4,14 +4,12 @@ import { Logo, Socials } from './ui.jsx'
 
 export default function Header() {
   const [open, setOpen] = useState(false)
-  const left = nav.slice(0, 3)
-  const right = nav.slice(3)
 
   return (
     <header className={`header ${open ? 'is-open' : ''}`}>
       <div className="container header__row">
         <nav className="header__nav" aria-label="Основная навигация">
-          {left.map((l) => (
+          {nav.map((l) => (
             <a key={l.href} href={l.href}>
               {l.label}
             </a>
@@ -21,11 +19,6 @@ export default function Header() {
         <Logo className="header__logo" />
 
         <div className="header__right">
-          {right.map((l) => (
-            <a key={l.href} href={l.href} className="header__contacts">
-              {l.label}
-            </a>
-          ))}
           <Socials />
         </div>
 

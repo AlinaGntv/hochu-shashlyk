@@ -1306,6 +1306,155 @@ a.about-visit__detail:hover .about-visit__arrow { transform: translateX(4px); }
 .offers-cta > a { display: inline-flex; align-items: center; gap: 8px; color: var(--amber); font-weight: 700; white-space: nowrap; }
 .offers-cta > a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
+/* ---------- Контакты ---------- */
+
+.contact-page {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 112px 0 78px;
+}
+
+.contact-page__glow {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: -15%;
+  width: min(800px, 76vw);
+  height: 620px;
+  pointer-events: none;
+  background: radial-gradient(ellipse, rgba(255, 87, 0, 0.13), transparent 68%);
+}
+
+.contact-intro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 44px 0 40px;
+  animation: rise 0.55s both;
+}
+
+.contact-intro h1 {
+  margin-top: 16px;
+  font: clamp(52px, 7.4vw, 86px)/0.99 var(--display);
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.contact-intro h1 span { color: var(--orange); text-shadow: 0 0 35px rgba(255, 106, 0, 0.32); }
+.contact-intro > div > p { margin-top: 17px; color: var(--muted); font-size: 16px; }
+
+.contact-intro__call {
+  position: relative;
+  display: grid;
+  gap: 3px;
+  min-width: 255px;
+  padding: 19px 48px 19px 20px;
+  border: 1px solid rgba(255, 164, 28, 0.28);
+  border-radius: 16px;
+  background: linear-gradient(130deg, rgba(255, 106, 0, 0.13), rgba(255, 164, 28, 0.025));
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.contact-intro__call:hover { transform: translateY(-3px); border-color: var(--amber); }
+.contact-intro__call > span { display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: 8px; border-radius: 12px; color: #170a02; background: var(--fire); }
+.contact-intro__call small { color: var(--muted); font-size: 11px; }
+.contact-intro__call strong { color: var(--text); font-size: 17px; }
+.contact-intro__arrow { position: absolute; top: 22px; right: 19px; color: var(--amber); }
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.contact-info { display: grid; align-content: start; gap: 12px; }
+
+.contact-info__card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 104px;
+  padding: 17px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.008)), var(--bg-card);
+  transition: transform 0.2s, border-color 0.2s, background 0.2s;
+}
+
+a.contact-info__card:hover { transform: translateX(3px); border-color: rgba(255, 164, 28, 0.42); background-color: #191511; }
+
+.contact-info__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255, 164, 28, 0.27);
+  border-radius: 13px;
+  color: var(--amber);
+  background: rgba(255, 106, 0, 0.07);
+}
+
+.contact-info__text { display: grid; gap: 4px; }
+.contact-info__text small { color: var(--muted); font-size: 11px; }
+.contact-info__text strong { color: var(--text); font-size: 14px; font-weight: 650; line-height: 1.4; }
+.contact-info__text em { display: inline-flex; align-items: center; gap: 4px; margin-top: 3px; color: var(--amber); font-size: 11px; font-style: normal; }
+.contact-info__text em svg { transition: transform 0.2s; }
+a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3px); }
+.contact-info__open { color: #99bd72 !important; }
+.contact-info__open i { width: 6px; height: 6px; border-radius: 50%; background: #9bc46a; box-shadow: 0 0 9px rgba(155, 196, 106, 0.65); }
+
+.contact-info__social { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 3px 0; color: var(--muted); font-size: 12px; }
+.contact-info__social .socials { gap: 8px; }
+.contact-info__social .socials a { width: 38px; height: 38px; }
+
+.contact-map-wrap { position: relative; min-height: 390px; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: #141312; }
+.contact-map-wrap .map { height: 100%; min-height: 390px; aspect-ratio: auto; border: 0; border-radius: 0; }
+.contact-map-wrap .map svg:first-child { min-height: 390px; }
+
+.contact-map-caption {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 13px;
+  background: rgba(13, 12, 10, 0.91);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.contact-map-caption__pin { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 11px; color: #170a02; background: var(--fire); }
+.contact-map-caption > span:nth-child(2) { display: grid; flex: 1; gap: 3px; }
+.contact-map-caption small { color: var(--muted); font-size: 10px; }
+.contact-map-caption strong { color: var(--text); font-size: 12px; }
+.contact-map-caption > a { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid rgba(255, 164, 28, 0.36); border-radius: 10px; color: var(--amber); }
+.contact-map-caption > a:hover { color: #170a02; background: var(--amber); }
+
+.contact-bottom {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+  padding: 17px 20px;
+  border: 1px solid rgba(255, 164, 28, 0.2);
+  border-radius: 14px;
+  background: linear-gradient(100deg, rgba(255, 106, 0, 0.075), rgba(255, 164, 28, 0.02));
+}
+
+.contact-bottom__flame { display: grid; place-items: center; flex: none; width: 38px; height: 38px; border-radius: 50%; color: #170a02; background: var(--fire); }
+.contact-bottom p { flex: 1; color: var(--muted); font-size: 13px; }
+.contact-bottom p strong { color: var(--text); }
+.contact-bottom > a { display: inline-flex; align-items: center; gap: 7px; color: var(--amber); font-size: 13px; font-weight: 700; white-space: nowrap; }
+.contact-bottom > a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
 /* ---------- Меню ---------- */
 
 .menu__head {
@@ -1868,6 +2017,12 @@ a.about-visit__detail:hover .about-visit__arrow { transform: translateX(4px); }
   .feast-art { min-height: 350px; }
   .offer-feature__content { padding: 32px 26px 32px 16px; }
   .offer-steps { padding-block: 62px; }
+  .contact-page { padding-top: 94px; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .contact-info { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; }
+  .contact-info__card { min-height: 100px; }
+  .contact-info__social { grid-column: 1 / -1; }
+  .contact-map-wrap, .contact-map-wrap .map, .contact-map-wrap .map svg:first-child { min-height: 340px; }
 }
 
 @media (max-width: 600px) {
@@ -1958,6 +2113,27 @@ a.about-visit__detail:hover .about-visit__arrow { transform: translateX(4px); }
   .offers-cta h2 { font-size: 15px; }
   .offers-cta p { font-size: 12px; }
   .offers-cta > a { margin-left: 59px; font-size: 13px; }
+  .contact-page { padding: 86px 0 54px; }
+  .contact-intro { align-items: flex-start; flex-direction: column; gap: 22px; padding: 28px 0; }
+  .contact-intro h1 { font-size: clamp(48px, 14vw, 68px); }
+  .contact-intro > div > p { max-width: 340px; font-size: 14px; line-height: 1.55; }
+  .contact-intro__call { display: grid; grid-template-columns: 42px 1fr; align-items: center; column-gap: 12px; width: 100%; min-width: 0; padding: 12px 42px 12px 12px; }
+  .contact-intro__call > span { grid-row: span 2; margin: 0; }
+  .contact-intro__call small { align-self: end; }
+  .contact-intro__call strong { align-self: start; font-size: 15px; }
+  .contact-intro__arrow { top: 50%; transform: translateY(-50%); }
+  .contact-layout { gap: 16px; }
+  .contact-info { grid-template-columns: 1fr; gap: 10px; }
+  .contact-info__card { min-height: 88px; padding: 13px; }
+  .contact-info__icon { width: 42px; height: 42px; }
+  .contact-info__text strong { font-size: 13px; }
+  .contact-info__social { grid-column: auto; padding-top: 2px; }
+  .contact-map-wrap, .contact-map-wrap .map, .contact-map-wrap .map svg:first-child { min-height: 280px; }
+  .contact-map-caption { right: 9px; bottom: 9px; left: 9px; gap: 8px; padding: 9px; }
+  .contact-map-caption strong { font-size: 10px; }
+  .contact-bottom { align-items: flex-start; flex-wrap: wrap; gap: 10px; padding: 14px; }
+  .contact-bottom p { min-width: calc(100% - 54px); font-size: 12px; }
+  .contact-bottom > a { margin-left: 48px; font-size: 12px; }
 
   .carousel__track {
     --gap: 14px;

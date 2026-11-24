@@ -45,7 +45,7 @@ export function Features() {
 }
 
 // Стилизованная карта-заглушка; по клику открывает Яндекс Карты.
-function MapCard() {
+export function MapCard() {
   return (
     <a className="map" href={site.mapUrl} target="_blank" rel="noreferrer" aria-label="Открыть на карте">
       <svg viewBox="0 0 520 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
