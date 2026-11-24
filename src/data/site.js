@@ -25,10 +25,10 @@ export const site = {
 }
 
 export const nav = [
-  { label: 'Меню', href: '#menu' },
-  { label: 'О нас', href: '#about' },
-  { label: 'Акции', href: '#sets' },
-  { label: 'Контакты', href: '#contacts' },
+  { label: 'Меню', href: '/menu.html' },
+  { label: 'О нас', href: '/#about' },
+  { label: 'Акции', href: '/#sets' },
+  { label: 'Контакты', href: '/#contacts' },
 ]
 
 // Слайды первого экрана. Первый — из макета, остальные три — заглушки.

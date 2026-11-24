@@ -98,7 +98,7 @@ export function Icon({ name, size = 24, className }) {
 
 export function Logo({ className = '' }) {
   return (
-    <a href="#top" className={`logo ${className}`} aria-label={site.name}>
+    <a href="/#top" className={`logo ${className}`} aria-label={site.name}>
       <img src={logo} alt={site.name} width="640" height="640" />
     </a>
   )

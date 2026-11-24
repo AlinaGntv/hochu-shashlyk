@@ -47,7 +47,7 @@ export default function Menu() {
               </button>
             ))}
           </div>
-          <a className="link-more" href="#menu">
+          <a className="link-more" href="/menu.html">
             Всё меню <Icon name="arrowRight" size={16} />
           </a>
         </div>
