@@ -17,6 +17,7 @@ export const site = {
   phone: '+7 (992) 555-22-55',
   phoneHref: 'tel:+79925552255',
   mapUrl: 'https://yandex.ru/maps/?text=Балашиха, шоссе Энтузиастов, 36А',
+  reviewsUrl: 'https://yandex.ru/maps/?text=Хочу%20шашлык%2C%20шоссе%20Энтузиастов%2C%2036А%2C%20Балашиха',
   socials: [
     { id: 'vk', label: 'ВКонтакте', url: '#' },
     { id: 'telegram', label: 'Telegram', url: '#' },

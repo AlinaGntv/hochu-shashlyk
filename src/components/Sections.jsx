@@ -44,6 +44,48 @@ export function Features() {
   )
 }
 
+const yandexReviews = [
+  {
+    author: 'Елена Буракова',
+    text: 'Очень хороший персонал. Внимательные, отзывчивые ребята.',
+  },
+  {
+    author: 'Елена Ем',
+    text: 'Что-то вкусно, что-то делать не умеют, как, например, шаурму и печень.',
+  },
+]
+
+export function Reviews() {
+  return (
+    <section className="reviews section" id="reviews" aria-labelledby="reviews-title">
+      <div className="container">
+        <div className="reviews__head">
+          <div>
+            <span className="reviews__eyebrow"><i /> Отзывы на Яндекс Картах</span>
+            <h2 className="heading" id="reviews-title">Гости о нас</h2>
+            <p className="reviews__lead">Настоящие отзывы о «Хочу шашлык» на шоссе Энтузиастов, 36А.</p>
+          </div>
+          <div className="reviews__rating" aria-label="Рейтинг 4,5 из 5 на Яндекс Картах">
+            <strong>4,5</strong><span><b aria-hidden="true">★ из 5</b><small>рейтинг в Яндекс Картах</small></span>
+          </div>
+        </div>
+        <div className="reviews__grid">
+          {yandexReviews.map((review) => (
+            <article className="review-card" key={review.author}>
+              <div className="review-card__source"><span className="review-card__mark">Я</span><span>Яндекс Карты</span></div>
+              <blockquote>«{review.text}»</blockquote>
+              <span className="review-card__author">{review.author}</span>
+            </article>
+          ))}
+        </div>
+        <a className="reviews__link" href={site.reviewsUrl} target="_blank" rel="noreferrer">
+          Смотреть отзывы и оставить свой <Icon name="arrowRight" size={17} />
+        </a>
+      </div>
+    </section>
+  )
+}
+
 // Стилизованная карта-заглушка; по клику открывает Яндекс Карты.
 export function MapCard() {
   return (
