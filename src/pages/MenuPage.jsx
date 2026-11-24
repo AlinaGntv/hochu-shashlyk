@@ -1,9 +1,12 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Header from '../components/Header.jsx'
 import { Footer } from '../components/Sections.jsx'
 import { site } from '../data/site.js'
 import useMenu from '../hooks/useMenu.js'
 import { Icon, Photo } from '../components/ui.jsx'
+import Pagination from '../components/Pagination.jsx'
+
+const PRODUCTS_PER_PAGE = 9
 
 const BADGES = { hit: 'Хит', new: 'Новинка' }
 
@@ -60,6 +63,7 @@ export default function MenuPage() {
   const [category, setCategory] = useState('all')
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState('popular')
+  const [page, setPage] = useState(1)
   const [requestDish, setRequestDish] = useState('')
   const [requestStatus, setRequestStatus] = useState('')
   const [requestBusy, setRequestBusy] = useState(false)
@@ -85,6 +89,10 @@ export default function MenuPage() {
     if (sort === 'price-down') return source.sort((a, b) => b.price - a.price)
     return source.sort((a, b) => Number(b.badge === 'hit') - Number(a.badge === 'hit'))
   }, [category, query, sort])
+  const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE)
+  const pageStart = (page - 1) * PRODUCTS_PER_PAGE
+  const visibleProducts = products.slice(pageStart, pageStart + PRODUCTS_PER_PAGE)
+  useEffect(() => { setPage((current) => Math.min(current, Math.max(1, totalPages))) }, [totalPages])
 
   return (
     <>
@@ -117,7 +125,7 @@ export default function MenuPage() {
                 type="button"
                 className={category === 'all' ? 'is-active' : ''}
                 aria-pressed={category === 'all'}
-                onClick={() => setCategory('all')}
+                onClick={() => { setCategory('all'); setPage(1) }}
               >
                 Всё меню
               </button>
@@ -127,7 +135,7 @@ export default function MenuPage() {
                   key={group.id}
                   className={category === group.id ? 'is-active' : ''}
                   aria-pressed={category === group.id}
-                  onClick={() => setCategory(group.id)}
+                  onClick={() => { setCategory(group.id); setPage(1) }}
                 >
                   {group.title}
                 </button>
@@ -141,13 +149,13 @@ export default function MenuPage() {
                 <input
                   type="search"
                   value={query}
-                  onChange={(event) => setQuery(event.target.value)}
+                  onChange={(event) => { setQuery(event.target.value); setPage(1) }}
                   placeholder="Найти блюдо"
                 />
               </label>
               <label className="catalog-sort">
                 <span>Сортировка</span>
-                <select value={sort} onChange={(event) => setSort(event.target.value)}>
+                <select value={sort} onChange={(event) => { setSort(event.target.value); setPage(1) }}>
                   <option value="popular">Сначала популярное</option>
                   <option value="price-up">Сначала дешевле</option>
                   <option value="price-down">Сначала дороже</option>
@@ -163,17 +171,20 @@ export default function MenuPage() {
             </div>
 
             {products.length ? (
-              <div className="catalog-grid">
-                {products.map((item, index) => (
-                  <ProductCard key={`${item.category}-${item.name}`} item={item} index={index} onOrder={setRequestDish} />
-                ))}
-              </div>
+              <>
+                <div className="catalog-grid">
+                  {visibleProducts.map((item, index) => (
+                    <ProductCard key={`${item.category}-${item.name}`} item={item} index={index} onOrder={setRequestDish} />
+                  ))}
+                </div>
+                <Pagination page={page} totalPages={totalPages} onChange={setPage} label="Страницы меню" />
+              </>
             ) : (
               <div className="catalog-empty">
                 <Icon name="flame" size={28} />
                 <h3>Такого блюда пока не нашли</h3>
                 <p>Попробуй изменить запрос или выбрать другую категорию.</p>
-                <button type="button" onClick={() => { setQuery(''); setCategory('all') }}>Сбросить фильтры</button>
+                <button type="button" onClick={() => { setQuery(''); setCategory('all'); setPage(1) }}>Сбросить фильтры</button>
               </div>
             )}
           </section>

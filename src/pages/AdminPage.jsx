@@ -1,5 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import { menu as seedMenu } from '../data/site.js'
+import Pagination from '../components/Pagination.jsx'
+
+const DISHES_PER_PAGE = 6
+const REQUESTS_PER_PAGE = 10
 
 const statusNames = { request: 'Заявка', order: 'Заказ', done: 'Завершено' }
 const idFor = (name) => name.toLocaleLowerCase('ru-RU').replace(/[^a-zа-я0-9]+/gi, '-').replace(/^-|-$/g, '') || crypto.randomUUID()
@@ -32,9 +36,14 @@ function Login({ onLogin }) {
 
 function DishEditor({ groups, setGroups, onSave, saving }) {
   const [selected, setSelected] = useState(0)
+  const [page, setPage] = useState(1)
   const [busyImage, setBusyImage] = useState(false)
   const [message, setMessage] = useState('')
   const dishes = groups[selected]?.items || []
+  const totalPages = Math.ceil(dishes.length / DISHES_PER_PAGE)
+  const pageStart = (page - 1) * DISHES_PER_PAGE
+  const visibleDishes = dishes.slice(pageStart, pageStart + DISHES_PER_PAGE)
+  useEffect(() => { setPage((current) => Math.min(current, Math.max(1, totalPages))) }, [totalPages])
   function changeDish(index, key, value) {
     const next = clone(groups); const dish = next[selected].items[index]
     const previousId = dish.id
@@ -47,7 +56,7 @@ function DishEditor({ groups, setGroups, onSave, saving }) {
     setGroups(next)
   }
   function addDish() {
-    const next = clone(groups); next[selected].items.push({ id: crypto.randomUUID(), name: '', text: '', ingredients: '', price: 0, weight: '', badge: '', photo: null }); setGroups(next)
+    const next = clone(groups); next[selected].items.push({ id: crypto.randomUUID(), name: '', text: '', ingredients: '', price: 0, weight: '', badge: '', photo: null }); setGroups(next); setPage(Math.ceil(next[selected].items.length / DISHES_PER_PAGE))
   }
   function removeDish(index) {
     const dish = dishes[index]; setGroups(groups.map((group) => ({ ...group, items: group.items.filter((item) => item.id !== dish.id) })))
@@ -64,21 +73,28 @@ function DishEditor({ groups, setGroups, onSave, saving }) {
   }
   return <section className="admin-panel">
     <div className="admin-section-head"><div><span className="admin-kicker">Каталог</span><h2>Блюда меню</h2></div><button className="admin-button admin-button--bright" onClick={addDish}>＋ Добавить блюдо</button></div>
-    <div className="admin-tabs">{groups.map((group, index) => <button key={group.id} className={selected === index ? 'is-active' : ''} onClick={() => setSelected(index)}>{group.title}</button>)}</div>
-    <div className="admin-dishes">{dishes.map((item, index) => <article className="admin-dish" key={item.id}>
-      <label className="admin-photo">{item.photo ? <img src={item.photo} alt="" /> : <span>＋<small>Фото</small></span>}<input type="file" accept="image/jpeg,image/png,image/webp,image/avif" onChange={(e) => upload(index, e.target.files?.[0])} disabled={busyImage} /></label>
+    <div className="admin-tabs">{groups.map((group, index) => <button key={group.id} className={selected === index ? 'is-active' : ''} onClick={() => { setSelected(index); setPage(1) }}>{group.title}</button>)}</div>
+    <div className="admin-dishes">{visibleDishes.map((item, index) => { const dishIndex = pageStart + index; return <article className="admin-dish" key={item.id}>
+      <label className="admin-photo">{item.photo ? <img src={item.photo} alt="" /> : <span>＋<small>Фото</small></span>}<input type="file" accept="image/jpeg,image/png,image/webp,image/avif" onChange={(e) => upload(dishIndex, e.target.files?.[0])} disabled={busyImage} /></label>
       <div className="admin-dish__fields">
-        <label>Название<input value={item.name} onChange={(e) => changeDish(index, 'name', e.target.value)} /></label>
-        <label>Описание<input value={item.text || ''} onChange={(e) => changeDish(index, 'text', e.target.value)} /></label>
-        <label>Состав<input value={item.ingredients || ''} onChange={(e) => changeDish(index, 'ingredients', e.target.value)} placeholder="Например: свинина, лук, специи" /></label>
-        <div className="admin-inline-fields"><label>Цена, ₽<input type="number" min="0" value={item.price} onChange={(e) => changeDish(index, 'price', Number(e.target.value))} /></label><label>Вес<input value={item.weight || ''} onChange={(e) => changeDish(index, 'weight', e.target.value)} /></label><label>Метка<select value={item.badge || ''} onChange={(e) => changeDish(index, 'badge', e.target.value)}><option value="">Нет</option><option value="hit">Хит</option><option value="new">Новинка</option></select></label></div>
-      </div><button className="admin-delete" onClick={() => removeDish(index)} aria-label={`Удалить ${item.name || 'блюдо'}`}>×</button>
-    </article>)}</div>
+        <label>Название<input value={item.name} onChange={(e) => changeDish(dishIndex, 'name', e.target.value)} /></label>
+        <label>Описание<input value={item.text || ''} onChange={(e) => changeDish(dishIndex, 'text', e.target.value)} /></label>
+        <label>Состав<input value={item.ingredients || ''} onChange={(e) => changeDish(dishIndex, 'ingredients', e.target.value)} placeholder="Например: свинина, лук, специи" /></label>
+        <div className="admin-inline-fields"><label>Цена, ₽<input type="number" min="0" value={item.price} onChange={(e) => changeDish(dishIndex, 'price', Number(e.target.value))} /></label><label>Вес<input value={item.weight || ''} onChange={(e) => changeDish(dishIndex, 'weight', e.target.value)} /></label><label>Метка<select value={item.badge || ''} onChange={(e) => changeDish(dishIndex, 'badge', e.target.value)}><option value="">Нет</option><option value="hit">Хит</option><option value="new">Новинка</option></select></label></div>
+      </div><button className="admin-delete" onClick={() => removeDish(dishIndex)} aria-label={`Удалить ${item.name || 'блюдо'}`}>×</button>
+    </article>})}</div>
+    {dishes.length > 0 && <div className="admin-list-meta">Показано {pageStart + 1}–{Math.min(pageStart + DISHES_PER_PAGE, dishes.length)} из {dishes.length} блюд</div>}
+    <Pagination page={page} totalPages={totalPages} onChange={setPage} label="Страницы блюд" />
     <div className="admin-save-row"><span>{message || 'Фотографии автоматически уменьшаются и сохраняются в WebP.'}</span><button className="btn" onClick={onSave} disabled={saving || busyImage}>{saving ? 'Сохраняем…' : 'Сохранить меню'}</button></div>
   </section>
 }
 
 function RequestStats({ requests, setRequests }) {
+  const [page, setPage] = useState(1)
+  const totalPages = Math.ceil(requests.length / REQUESTS_PER_PAGE)
+  const pageStart = (page - 1) * REQUESTS_PER_PAGE
+  const visibleRequests = requests.slice(pageStart, pageStart + REQUESTS_PER_PAGE)
+  useEffect(() => { setPage((current) => Math.min(current, Math.max(1, totalPages))) }, [totalPages])
   const stats = useMemo(() => {
     const month = new Date(); const monthRows = requests.filter((r) => { const d = new Date(r.createdAt); return d.getMonth() === month.getMonth() && d.getFullYear() === month.getFullYear() })
     return { total: monthRows.length, orders: monthRows.filter((r) => r.status === 'order' || r.status === 'done').length, new: requests.filter((r) => r.status === 'request').length }
@@ -90,7 +106,9 @@ function RequestStats({ requests, setRequests }) {
   return <section className="admin-panel">
     <div className="admin-section-head"><div><span className="admin-kicker">Заказы и обращения</span><h2>Заявки</h2></div><span className="admin-period">За текущий месяц</span></div>
     <div className="admin-stats"><article><span>Всего заявок</span><strong>{stats.total}</strong></article><article><span>Переведено в заказ</span><strong>{stats.orders}</strong></article><article><span>Новые</span><strong>{stats.new}</strong></article></div>
-    <div className="admin-request-list">{requests.length ? requests.slice(0, 30).map((row) => <article className="admin-request" key={row.id}><div><strong>{row.name}</strong><a href={`tel:${row.phone.replace(/[^+\d]/g, '')}`}>{row.phone}</a><span>{row.dish || 'Без выбранного блюда'}{row.note ? ` · ${row.note}` : ''}</span></div><time>{new Date(row.createdAt).toLocaleString('ru-RU', { dateStyle: 'short', timeStyle: 'short' })}</time><select aria-label="Статус заявки" value={row.status} onChange={(e) => setStatus(row, e.target.value)}>{Object.entries(statusNames).map(([key, title]) => <option value={key} key={key}>{title}</option>)}</select></article>) : <p className="admin-empty">Заявок пока нет. Новые обращения с формы на сайте появятся здесь.</p>}</div>
+    <div className="admin-request-list">{requests.length ? visibleRequests.map((row) => <article className="admin-request" key={row.id}><div><strong>{row.name}</strong><a href={`tel:${row.phone.replace(/[^+\d]/g, '')}`}>{row.phone}</a><span>{row.dish || 'Без выбранного блюда'}{row.note ? ` · ${row.note}` : ''}</span></div><time>{new Date(row.createdAt).toLocaleString('ru-RU', { dateStyle: 'short', timeStyle: 'short' })}</time><select aria-label="Статус заявки" value={row.status} onChange={(e) => setStatus(row, e.target.value)}>{Object.entries(statusNames).map(([key, title]) => <option value={key} key={key}>{title}</option>)}</select></article>) : <p className="admin-empty">Заявок пока нет. Новые обращения с формы на сайте появятся здесь.</p>}</div>
+    {requests.length > 0 && <div className="admin-list-meta">Показано {pageStart + 1}–{Math.min(pageStart + REQUESTS_PER_PAGE, requests.length)} из {requests.length} заявок</div>}
+    <Pagination page={page} totalPages={totalPages} onChange={setPage} label="Страницы заявок" />
     <p className="admin-footnote">Считаются обращения, отправленные через форму на сайте. Звонки по телефону отдельно не отслеживаются.</p>
   </section>
 }
