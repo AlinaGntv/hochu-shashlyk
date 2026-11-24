@@ -1,15 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { menu } from '../data/site.js'
+import useMenu from '../hooks/useMenu.js'
 import { Icon, Photo } from './ui.jsx'
 
 const BADGES = { hit: 'Хит', new: 'New' }
 
 export default function Menu() {
+  const menu = useMenu()
   const [tab, setTab] = useState(menu[0].id)
   const [page, setPage] = useState(0)
   const [pages, setPages] = useState(1)
   const track = useRef(null)
   const items = menu.find((c) => c.id === tab).items
+
+  useEffect(() => { if (!menu.some((group) => group.id === tab)) setTab(menu[0].id) }, [menu, tab])
 
   const getMetrics = () => {
     const el = track.current
@@ -85,7 +88,7 @@ export default function Menu() {
                 </div>
                 <div className="card__body">
                   <h3>{item.name}</h3>
-                  <p>{item.text}</p>
+                  <p>{item.text}{item.ingredients && <span className="card__ingredients">Состав: {item.ingredients}</span>}</p>
                   <div className="card__foot">
                     <span className="card__price">{item.price.toLocaleString('ru-RU')} ₽</span>
                     <span className="card__weight">{item.weight}</span>

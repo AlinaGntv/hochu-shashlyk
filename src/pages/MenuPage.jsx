@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import Header from '../components/Header.jsx'
 import { Footer } from '../components/Sections.jsx'
-import { menu, site } from '../data/site.js'
+import { site } from '../data/site.js'
+import useMenu from '../hooks/useMenu.js'
 import { Icon, Photo } from '../components/ui.jsx'
 
 const BADGES = { hit: 'Хит', new: 'Новинка' }
@@ -23,7 +24,7 @@ function SearchIcon() {
   )
 }
 
-function ProductCard({ item, index }) {
+function ProductCard({ item, index, onOrder }) {
   return (
     <article
       className="catalog-card"
@@ -38,16 +39,16 @@ function ProductCard({ item, index }) {
       <div className="catalog-card__body">
         <div className="catalog-card__details">
           <h3>{item.name}</h3>
-          <p>{item.text}</p>
+          <p>{item.text}{item.ingredients && <span className="catalog-card__ingredients">Состав: {item.ingredients}</span>}</p>
         </div>
         <div className="catalog-card__foot">
           <div>
             <strong>{item.price.toLocaleString('ru-RU')} ₽</strong>
             <span>{item.weight}</span>
           </div>
-          <a className="catalog-card__order" href={site.phoneHref} aria-label={`Заказать: ${item.name}`}>
+          <button className="catalog-card__order" type="button" onClick={() => onOrder(item.name)} aria-label={`Заказать: ${item.name}`}>
             Заказать <Icon name="arrowRight" size={16} />
-          </a>
+          </button>
         </div>
       </div>
     </article>
@@ -55,9 +56,13 @@ function ProductCard({ item, index }) {
 }
 
 export default function MenuPage() {
+  const menu = useMenu()
   const [category, setCategory] = useState('all')
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState('popular')
+  const [requestDish, setRequestDish] = useState('')
+  const [requestStatus, setRequestStatus] = useState('')
+  const [requestBusy, setRequestBusy] = useState(false)
 
   const products = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase('ru-RU')
@@ -160,7 +165,7 @@ export default function MenuPage() {
             {products.length ? (
               <div className="catalog-grid">
                 {products.map((item, index) => (
-                  <ProductCard key={`${item.category}-${item.name}`} item={item} index={index} />
+                  <ProductCard key={`${item.category}-${item.name}`} item={item} index={index} onOrder={setRequestDish} />
                 ))}
               </div>
             ) : (
@@ -180,6 +185,22 @@ export default function MenuPage() {
           </aside>
         </div>
       </main>
+      {requestDish && <div className="request-overlay" role="presentation" onMouseDown={(e) => { if (e.target === e.currentTarget) { setRequestDish(''); setRequestStatus('') } }}><form className="request-dialog" onSubmit={async (e) => {
+        e.preventDefault(); setRequestBusy(true); setRequestStatus('')
+        const formElement = e.currentTarget
+        const form = new FormData(formElement)
+        try { const response = await fetch('/api/requests', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: form.get('name'), phone: form.get('phone'), dish: requestDish, note: form.get('note') }) }); const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Не удалось отправить заявку.'); setRequestStatus('Заявка отправлена! Мы скоро позвоним.'); formElement.reset() }
+        catch (error) { setRequestStatus(error.message) }
+        finally { setRequestBusy(false) }
+      }}>
+        <button type="button" className="request-dialog__close" onClick={() => { setRequestDish(''); setRequestStatus('') }} aria-label="Закрыть">×</button>
+        <span className="catalog-eyebrow"><i /> Заказ</span><h2>Оставить заявку</h2><p>Вы выбрали: <strong>{requestDish}</strong>. Оставь номер — мы уточним детали по телефону.</p>
+        <label>Как к вам обращаться<input name="name" autoComplete="name" required minLength="2" placeholder="Ваше имя" /></label>
+        <label>Номер телефона<input name="phone" autoComplete="tel" type="tel" required placeholder="+7 (___) ___-__-__" /></label>
+        <label>Комментарий <textarea name="note" rows="3" placeholder="Количество порций, время самовывоза…" /></label>
+        {requestStatus && <div className="request-status" role="status">{requestStatus}</div>}
+        <button className="btn" disabled={requestBusy}>{requestBusy ? 'Отправляем…' : 'Отправить заявку'}</button>
+      </form></div>}
       <Footer />
     </>
   )
