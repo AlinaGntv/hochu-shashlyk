@@ -158,7 +158,8 @@ export function Footer() {
         </div>
       </div>
       <p className="container footer__copy">
-        © {new Date().getFullYear()} {site.name}
+        <span>© {new Date().getFullYear()} {site.name}</span>
+        <a className="footer__credit" href="https://chadmetrix.ru" target="_blank" rel="noreferrer">Разработано в <strong>AVE</strong><span aria-hidden="true"> ↗</span></a>
       </p>
     </footer>
   )

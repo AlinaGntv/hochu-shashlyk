@@ -14,7 +14,7 @@ export default function Pagination({ page, totalPages, onChange, label = 'Стр
       <button type="button" className="pagination__step" onClick={() => onChange(page - 1)} disabled={page === 1}>← Назад</button>
       <div className="pagination__pages">
         {pages.map((number) => {
-          const gap = previous && number - previous > 1
+          const gap = previous > 0 && number - previous > 1
           previous = number
           return <span className="pagination__item" key={number}>
             {gap && <span className="pagination__ellipsis" aria-hidden="true">…</span>}
@@ -22,7 +22,6 @@ export default function Pagination({ page, totalPages, onChange, label = 'Стр
           </span>
         })}
       </div>
-      <span className="pagination__status">{page} / {totalPages}</span>
       <button type="button" className="pagination__step" onClick={() => onChange(page + 1)} disabled={page === totalPages}>Вперёд →</button>
     </nav>
   )

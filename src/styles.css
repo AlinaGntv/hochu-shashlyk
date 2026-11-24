@@ -2049,10 +2049,19 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
 }
 
 .footer__copy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   margin-top: 36px;
   font-size: 13px;
   color: var(--muted);
 }
+
+.footer__credit { color: var(--muted); text-decoration: none; transition: color .2s ease; }
+.footer__credit strong { color: var(--amber); font-weight: 750; letter-spacing: .08em; }
+.footer__credit span { color: var(--amber); opacity: .8; }
+.footer__credit:hover { color: var(--text); }
 
 /* ---------- Адаптив ---------- */
 
@@ -2377,14 +2386,14 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
 .pagination button.is-current { border-color: var(--amber); background: var(--amber); color: #1b1005; font-weight: 750; }
 .pagination button:disabled { opacity: .4; cursor: not-allowed; }
 .pagination__step { font-size: 13px; font-weight: 650; }
-.pagination__status, .pagination__ellipsis, .admin-list-meta { color: var(--muted); font-size: 12px; }
+.pagination__ellipsis, .admin-list-meta { color: var(--muted); font-size: 12px; }
 .admin-list-meta { margin-top: 12px; text-align: right; }
 
 @media (max-width: 480px) {
   .pagination { gap: 7px; }
-  .pagination__status { order: 3; width: 100%; text-align: center; }
   .pagination__pages { gap: 3px; }
   .pagination__item { gap: 3px; }
   .pagination button { min-width: 34px; min-height: 36px; padding-inline: 7px; }
   .pagination__step { font-size: 12px; }
+  .footer__copy { align-items: flex-start; flex-direction: column; gap: 9px; }
 }
