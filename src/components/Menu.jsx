@@ -11,12 +11,23 @@ export default function Menu() {
   const track = useRef(null)
   const items = menu.find((c) => c.id === tab).items
 
+  const getMetrics = () => {
+    const el = track.current
+    const card = el?.querySelector('.card')
+    if (!el || !card) return { pageCount: 1, pageSize: 1, step: 0 }
+    const gap = Number.parseFloat(window.getComputedStyle(el).columnGap) || 0
+    const step = card.getBoundingClientRect().width + gap
+    const pageSize = Math.max(1, Math.floor((el.clientWidth + gap) / step))
+    return { pageCount: Math.max(1, Math.ceil(items.length / pageSize)), pageSize, step }
+  }
+
   const measure = useCallback(() => {
     const el = track.current
     if (!el) return
-    setPages(Math.max(1, Math.round(el.scrollWidth / el.clientWidth)))
-    setPage(Math.round(el.scrollLeft / el.clientWidth))
-  }, [])
+    const { pageCount, pageSize, step } = getMetrics()
+    setPages(pageCount)
+    setPage(step ? Math.min(pageCount - 1, Math.round(el.scrollLeft / (step * pageSize))) : 0)
+  }, [items.length])
 
   useEffect(() => {
     track.current.scrollLeft = 0
@@ -27,7 +38,8 @@ export default function Menu() {
 
   const scrollToPage = (p) => {
     const el = track.current
-    el.scrollTo({ left: p * el.clientWidth, behavior: 'smooth' })
+    const { pageSize, step } = getMetrics()
+    el.scrollTo({ left: p * pageSize * step, behavior: 'smooth' })
   }
 
   return (
