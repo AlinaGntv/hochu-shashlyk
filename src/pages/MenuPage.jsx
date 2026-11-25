@@ -5,6 +5,7 @@ import { site } from '../data/site.js'
 import useMenu from '../hooks/useMenu.js'
 import { Icon, Photo } from '../components/ui.jsx'
 import Pagination from '../components/Pagination.jsx'
+import { useCart } from '../context/CartContext.jsx'
 
 const PRODUCTS_PER_PAGE = 9
 
@@ -49,8 +50,8 @@ function ProductCard({ item, index, onOrder }) {
             <strong>{item.price.toLocaleString('ru-RU')} ₽</strong>
             <span>{item.weight}</span>
           </div>
-          <button className="catalog-card__order" type="button" onClick={() => onOrder(item.name)} aria-label={`Заказать: ${item.name}`}>
-            Заказать <Icon name="arrowRight" size={16} />
+          <button className="catalog-card__order" type="button" onClick={() => onOrder(item)} aria-label={`Добавить в корзину: ${item.name}`}>
+            В корзину <Icon name="plus" size={16} />
           </button>
         </div>
       </div>
@@ -64,9 +65,7 @@ export default function MenuPage({ initialMenu } = {}) {
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState('popular')
   const [page, setPage] = useState(1)
-  const [requestDish, setRequestDish] = useState('')
-  const [requestStatus, setRequestStatus] = useState('')
-  const [requestBusy, setRequestBusy] = useState(false)
+  const cart = useCart()
 
   const products = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase('ru-RU')
@@ -174,7 +173,7 @@ export default function MenuPage({ initialMenu } = {}) {
               <>
                 <div className="catalog-grid">
                   {visibleProducts.map((item, index) => (
-                    <ProductCard key={`${item.category}-${item.name}`} item={item} index={index} onOrder={setRequestDish} />
+                    <ProductCard key={`${item.category}-${item.name}`} item={item} index={index} onOrder={cart.addItem} />
                   ))}
                 </div>
                 <Pagination page={page} totalPages={totalPages} onChange={setPage} label="Страницы меню" />
@@ -196,24 +195,6 @@ export default function MenuPage({ initialMenu } = {}) {
           </aside>
         </div>
       </main>
-      {requestDish && <div className="request-overlay" role="presentation" onMouseDown={(e) => { if (e.target === e.currentTarget) { setRequestDish(''); setRequestStatus('') } }}><form className="request-dialog" onSubmit={async (e) => {
-        e.preventDefault(); setRequestBusy(true); setRequestStatus('')
-        const formElement = e.currentTarget
-        const form = new FormData(formElement)
-        try { const response = await fetch('/api/requests', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: form.get('name'), phone: form.get('phone'), dish: requestDish, note: form.get('note'), consent: form.get('consent') === 'on' }) }); const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Не удалось отправить заявку.'); setRequestStatus('Заявка отправлена! Мы скоро позвоним.'); formElement.reset() }
-        catch (error) { setRequestStatus(error.message) }
-        finally { setRequestBusy(false) }
-      }}>
-        <button type="button" className="request-dialog__close" onClick={() => { setRequestDish(''); setRequestStatus('') }} aria-label="Закрыть">×</button>
-        <span className="catalog-eyebrow"><i /> Заказ</span><h2>Оставить заявку</h2><p>Вы выбрали: <strong>{requestDish}</strong>. Оставь номер — мы уточним детали по телефону.</p>
-        <label>Как к вам обращаться<input name="name" autoComplete="name" required minLength="2" placeholder="Ваше имя" /></label>
-        <label>Номер телефона<input name="phone" autoComplete="tel" type="tel" required placeholder="+7 (___) ___-__-__" /></label>
-        <label>Комментарий <textarea name="note" rows="3" placeholder="Количество порций, время самовывоза…" /></label>
-        <label className="request-consent"><input type="checkbox" name="consent" required /><span>Я даю отдельное согласие на обработку персональных данных. <a href="/personal-data-consent.html" target="_blank" rel="noreferrer">Прочитать текст согласия</a>.</span></label>
-        <p className="request-privacy-note">Политика обработки персональных данных: <a href="/privacy.html" target="_blank" rel="noreferrer">ознакомиться</a>.</p>
-        {requestStatus && <div className="request-status" role="status">{requestStatus}</div>}
-        <button className="btn" disabled={requestBusy}>{requestBusy ? 'Отправляем…' : 'Отправить заявку'}</button>
-      </form></div>}
       <Footer />
     </>
   )

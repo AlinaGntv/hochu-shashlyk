@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { nav } from '../data/site.js'
-import { Logo, Socials } from './ui.jsx'
+import { Icon, Logo, Socials } from './ui.jsx'
+import { useCart } from '../context/CartContext.jsx'
 
 export default function Header() {
+  const cart = useCart()
   const [open, setOpen] = useState(false)
 
   return (
@@ -20,7 +22,14 @@ export default function Header() {
 
         <div className="header__right">
           <Socials />
+          <button className="header-cart" type="button" onClick={cart.openCart} aria-label={`Корзина, товаров: ${cart.count}`}>
+            <Icon name="basket" size={18} /><span>Корзина</span>{cart.count > 0 && <b>{cart.count}</b>}
+          </button>
         </div>
+
+        <button className="header-cart header-cart--mobile" type="button" onClick={cart.openCart} aria-label={`Корзина, товаров: ${cart.count}`}>
+          <Icon name="basket" size={19} />{cart.count > 0 && <b>{cart.count}</b>}
+        </button>
 
         <button
           className="burger"

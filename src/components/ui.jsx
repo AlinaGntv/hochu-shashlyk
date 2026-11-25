@@ -37,6 +37,12 @@ const icons = {
       <path d="M9 8V6a3 3 0 0 1 6 0v2" />
     </g>
   ),
+  basket: (
+    <g {...stroke}>
+      <path d="M4 9h16l-1.3 11H5.3z" />
+      <path d="m8 9 4-6 4 6M9 13v3m6-3v3" />
+    </g>
+  ),
   pin: (
     <g {...stroke}>
       <path d="M12 21s7-6.200 7-11.500a7 7 0 0 0-14 0C5 14.800 12 21 12 21z" />

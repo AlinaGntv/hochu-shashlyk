@@ -13,6 +13,7 @@ const dataDir = process.env.DATA_DIR || path.join(here, 'data')
 const uploadsDir = process.env.UPLOADS_DIR || path.join(here, 'uploads')
 const menuFile = path.join(dataDir, 'menu.json')
 const requestsFile = path.join(dataDir, 'requests.json')
+const defaultMenu = JSON.parse(readFileSync(path.join(here, 'default-menu.json'), 'utf8'))
 let sessionKey = process.env.ADMIN_PASSWORD || ''
 if (!sessionKey) {
   try { sessionKey = readFileSync(path.join(here, '.admin-password'), 'utf8').trim() }
@@ -56,7 +57,7 @@ const imageUpload = multer({ storage: multer.memoryStorage(), limits: { fileSize
 } })
 
 app.get('/api/menu', async (_req, res, next) => {
-  try { res.json(await readJson(menuFile, null)) }
+  try { res.json(await readJson(menuFile, defaultMenu)) }
   catch (e) { next(e) }
 })
 app.post('/api/admin/login', (req, res) => {
@@ -112,6 +113,47 @@ app.post('/api/requests', async (req, res, next) => {
     requestWrites = operation.catch(() => {})
     await operation
     res.status(201).json({ ok: true })
+  } catch (e) { next(e) }
+})
+app.post('/api/orders', async (req, res, next) => {
+  try {
+    if (req.body?.consent !== true) return res.status(400).json({ error: 'Для оформления заказа необходимо дать согласие на обработку персональных данных.' })
+    const name = String(req.body?.name || '').trim().slice(0, 80)
+    const phone = String(req.body?.phone || '').trim().slice(0, 40)
+    const address = String(req.body?.address || '').trim().slice(0, 250)
+    const note = String(req.body?.note || '').trim().slice(0, 500)
+    if (name.length < 2 || phone.replace(/\D/g, '').length < 10 || address.length < 5) return res.status(400).json({ error: 'Проверьте имя, телефон и адрес доставки.' })
+    if (!Array.isArray(req.body?.items) || req.body.items.length < 1 || req.body.items.length > 50) return res.status(400).json({ error: 'Корзина пуста или содержит слишком много позиций.' })
+
+    const groups = await readJson(menuFile, defaultMenu)
+    const catalog = new Map()
+    for (const group of groups) for (const item of group.items || []) catalog.set(String(item.id || item.name.trim().toLocaleLowerCase('ru-RU').replace(/[^a-zа-я0-9]+/gi, '-')), item)
+    const quantities = new Map()
+    for (const line of req.body.items) {
+      const id = String(line?.id || '')
+      const quantity = Number(line?.quantity)
+      if (!catalog.has(id) || !Number.isInteger(quantity) || quantity < 1 || quantity > 50) return res.status(400).json({ error: 'Некоторые блюда уже изменились. Обновите меню и проверьте корзину.' })
+      quantities.set(id, (quantities.get(id) || 0) + quantity)
+      if (quantities.get(id) > 50) return res.status(400).json({ error: 'Количество одного блюда не может превышать 50.' })
+    }
+    const items = [...quantities].map(([id, quantity]) => {
+      const dish = catalog.get(id)
+      const price = Number(dish.price)
+      return { id, name: String(dish.name).slice(0, 120), quantity, unitPrice: price, weight: String(dish.weight || '').slice(0, 40), lineTotal: price * quantity }
+    })
+    if (items.some((item) => !Number.isFinite(item.unitPrice) || item.unitPrice < 0)) return res.status(503).json({ error: 'Не удалось проверить цены. Позвоните, пожалуйста, для заказа.' })
+    const subtotal = items.reduce((total, item) => total + item.lineTotal, 0)
+    const orderId = crypto.randomUUID()
+    const createdAt = new Date().toISOString()
+    const order = { id: orderId, type: 'order', name, phone, address, note, items, dish: items.map((item) => `${item.name} × ${item.quantity}`).join(', '), subtotal, deliveryFee: null, total: subtotal, paymentMethod: 'courier_terminal', consentGiven: true, consentVersion: '2026-11-25-delivery-v1', consentAt: createdAt, status: 'request', createdAt }
+    const operation = requestWrites.then(async () => {
+      const requests = await readJson(requestsFile, [])
+      requests.unshift(order)
+      await writeJson(requestsFile, requests.slice(0, 2000))
+    })
+    requestWrites = operation.catch(() => {})
+    await operation
+    res.status(201).json({ ok: true, orderId, total: subtotal })
   } catch (e) { next(e) }
 })
 app.get('/api/admin/requests', requireAdmin, async (_req, res, next) => {

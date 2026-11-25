@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import useMenu from '../hooks/useMenu.js'
 import { Icon, Photo } from './ui.jsx'
+import { useCart } from '../context/CartContext.jsx'
 
 const BADGES = { hit: 'Хит', new: 'New' }
 
 export default function Menu({ initialMenu } = {}) {
   const menu = useMenu(initialMenu)
+  const cart = useCart()
   const [tab, setTab] = useState(menu[0].id)
   const [page, setPage] = useState(0)
   const [pages, setPages] = useState(1)
@@ -92,7 +94,7 @@ export default function Menu({ initialMenu } = {}) {
                   <div className="card__foot">
                     <span className="card__price">{item.price.toLocaleString('ru-RU')} ₽</span>
                     <span className="card__weight">{item.weight}</span>
-                    <button className="card__add" aria-label={`Добавить «${item.name}»`}>
+                    <button className="card__add" onClick={() => cart.addItem(item)} aria-label={`Добавить «${item.name}»`}>
                       <Icon name="plus" size={18} />
                     </button>
                   </div>
