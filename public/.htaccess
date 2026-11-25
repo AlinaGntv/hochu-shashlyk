@@ -1,8 +1,24 @@
 RewriteEngine On
 
 # Старые ссылки переводим на короткие адреса.
+RewriteCond %{THE_REQUEST} \s/+promos\.html(?:[?\s]) [NC]
 RewriteRule ^promos\.html$ /promo [R=301,L]
-RewriteRule ^(menu|about|contacts|admin|privacy|personal-data-consent|order-delivery|requisites)\.html$ /$1 [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+menu\.html(?:[?\s]) [NC]
+RewriteRule ^menu\.html$ /menu [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+about\.html(?:[?\s]) [NC]
+RewriteRule ^about\.html$ /about [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+contacts\.html(?:[?\s]) [NC]
+RewriteRule ^contacts\.html$ /contacts [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+admin\.html(?:[?\s]) [NC]
+RewriteRule ^admin\.html$ /admin [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+privacy\.html(?:[?\s]) [NC]
+RewriteRule ^privacy\.html$ /privacy [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+personal-data-consent\.html(?:[?\s]) [NC]
+RewriteRule ^personal-data-consent\.html$ /personal-data-consent [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+order-delivery\.html(?:[?\s]) [NC]
+RewriteRule ^order-delivery\.html$ /order-delivery [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+requisites\.html(?:[?\s]) [NC]
+RewriteRule ^requisites\.html$ /requisites [R=301,L]
 
 # Короткие публичные адреса отображаются на HTML-файлы сборки.
 RewriteRule ^promo/?$ promos.html [L]
