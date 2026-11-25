@@ -107,7 +107,7 @@ app.post('/api/requests', async (req, res, next) => {
     if (name.length < 2 || phone.replace(/\D/g, '').length < 10) return res.status(400).json({ error: 'Проверьте имя и номер телефона.' })
     const operation = requestWrites.then(async () => {
       const requests = await readJson(requestsFile, [])
-      requests.unshift({ id: crypto.randomUUID(), name, phone, dish: String(req.body?.dish || '').trim().slice(0, 120), note: String(req.body?.note || '').trim().slice(0, 500), consentGiven: true, consentVersion: '2026-11-25', consentAt: new Date().toISOString(), status: 'request', createdAt: new Date().toISOString() })
+      requests.unshift({ id: crypto.randomUUID(), name, phone, dish: String(req.body?.dish || '').trim().slice(0, 120), note: String(req.body?.note || '').trim().slice(0, 500), consentGiven: true, consentVersion: '2026-11-25-v3', consentAt: new Date().toISOString(), status: 'request', createdAt: new Date().toISOString() })
       await writeJson(requestsFile, requests.slice(0, 2000))
     })
     requestWrites = operation.catch(() => {})
@@ -145,7 +145,7 @@ app.post('/api/orders', async (req, res, next) => {
     const subtotal = items.reduce((total, item) => total + item.lineTotal, 0)
     const orderId = crypto.randomUUID()
     const createdAt = new Date().toISOString()
-    const order = { id: orderId, type: 'order', name, phone, address, note, items, dish: items.map((item) => `${item.name} × ${item.quantity}`).join(', '), subtotal, deliveryFee: null, total: subtotal, paymentMethod: 'courier_terminal', consentGiven: true, consentVersion: '2026-11-25-delivery-v2', consentAt: createdAt, status: 'request', createdAt }
+    const order = { id: orderId, type: 'order', name, phone, address, note, items, dish: items.map((item) => `${item.name} × ${item.quantity}`).join(', '), subtotal, deliveryFee: null, total: subtotal, paymentMethod: 'courier_terminal', consentGiven: true, consentVersion: '2026-11-25-v3', consentAt: createdAt, status: 'request', createdAt }
     const operation = requestWrites.then(async () => {
       const requests = await readJson(requestsFile, [])
       requests.unshift(order)
