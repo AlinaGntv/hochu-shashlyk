@@ -145,7 +145,7 @@ app.post('/api/orders', async (req, res, next) => {
     const subtotal = items.reduce((total, item) => total + item.lineTotal, 0)
     const orderId = crypto.randomUUID()
     const createdAt = new Date().toISOString()
-    const order = { id: orderId, type: 'order', name, phone, address, note, items, dish: items.map((item) => `${item.name} × ${item.quantity}`).join(', '), subtotal, deliveryFee: null, total: subtotal, paymentMethod: 'courier_terminal', consentGiven: true, consentVersion: '2026-11-25-delivery-v1', consentAt: createdAt, status: 'request', createdAt }
+    const order = { id: orderId, type: 'order', name, phone, address, note, items, dish: items.map((item) => `${item.name} × ${item.quantity}`).join(', '), subtotal, deliveryFee: null, total: subtotal, paymentMethod: 'courier_terminal', consentGiven: true, consentVersion: '2026-11-25-delivery-v2', consentAt: createdAt, status: 'request', createdAt }
     const operation = requestWrites.then(async () => {
       const requests = await readJson(requestsFile, [])
       requests.unshift(order)
