@@ -100,12 +100,13 @@ app.post('/api/admin/upload', requireAdmin, imageUpload.single('photo'), async (
 })
 app.post('/api/requests', async (req, res, next) => {
   try {
+    if (req.body?.consent !== true) return res.status(400).json({ error: 'Для отправки заявки необходимо дать согласие на обработку персональных данных.' })
     const name = String(req.body?.name || '').trim().slice(0, 80)
     const phone = String(req.body?.phone || '').trim().slice(0, 40)
     if (name.length < 2 || phone.replace(/\D/g, '').length < 10) return res.status(400).json({ error: 'Проверьте имя и номер телефона.' })
     const operation = requestWrites.then(async () => {
       const requests = await readJson(requestsFile, [])
-      requests.unshift({ id: crypto.randomUUID(), name, phone, dish: String(req.body?.dish || '').trim().slice(0, 120), note: String(req.body?.note || '').trim().slice(0, 500), status: 'request', createdAt: new Date().toISOString() })
+      requests.unshift({ id: crypto.randomUUID(), name, phone, dish: String(req.body?.dish || '').trim().slice(0, 120), note: String(req.body?.note || '').trim().slice(0, 500), consentGiven: true, consentVersion: '2026-11-25', consentAt: new Date().toISOString(), status: 'request', createdAt: new Date().toISOString() })
       await writeJson(requestsFile, requests.slice(0, 2000))
     })
     requestWrites = operation.catch(() => {})

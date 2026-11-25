@@ -200,7 +200,7 @@ export default function MenuPage() {
         e.preventDefault(); setRequestBusy(true); setRequestStatus('')
         const formElement = e.currentTarget
         const form = new FormData(formElement)
-        try { const response = await fetch('/api/requests', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: form.get('name'), phone: form.get('phone'), dish: requestDish, note: form.get('note') }) }); const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Не удалось отправить заявку.'); setRequestStatus('Заявка отправлена! Мы скоро позвоним.'); formElement.reset() }
+        try { const response = await fetch('/api/requests', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: form.get('name'), phone: form.get('phone'), dish: requestDish, note: form.get('note'), consent: form.get('consent') === 'on' }) }); const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Не удалось отправить заявку.'); setRequestStatus('Заявка отправлена! Мы скоро позвоним.'); formElement.reset() }
         catch (error) { setRequestStatus(error.message) }
         finally { setRequestBusy(false) }
       }}>
@@ -209,6 +209,8 @@ export default function MenuPage() {
         <label>Как к вам обращаться<input name="name" autoComplete="name" required minLength="2" placeholder="Ваше имя" /></label>
         <label>Номер телефона<input name="phone" autoComplete="tel" type="tel" required placeholder="+7 (___) ___-__-__" /></label>
         <label>Комментарий <textarea name="note" rows="3" placeholder="Количество порций, время самовывоза…" /></label>
+        <label className="request-consent"><input type="checkbox" name="consent" required /><span>Я даю отдельное согласие на обработку персональных данных. <a href="/personal-data-consent.html" target="_blank" rel="noreferrer">Прочитать текст согласия</a>.</span></label>
+        <p className="request-privacy-note">Политика обработки персональных данных: <a href="/privacy.html" target="_blank" rel="noreferrer">ознакомиться</a>.</p>
         {requestStatus && <div className="request-status" role="status">{requestStatus}</div>}
         <button className="btn" disabled={requestBusy}>{requestBusy ? 'Отправляем…' : 'Отправить заявку'}</button>
       </form></div>}
