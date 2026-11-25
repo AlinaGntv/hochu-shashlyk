@@ -70,7 +70,7 @@ export default function PromosPage() {
               </div>
               <div className="offer-feature__actions">
                 <a className="btn" href={site.phoneHref}>Уточнить состав и цену <Icon name="arrowRight" size={18} /></a>
-                <a className="offer-menu-link" href="/menu.html">Смотреть меню <Icon name="arrowRight" size={16} /></a>
+                <a className="offer-menu-link" href="/menu">Смотреть меню <Icon name="arrowRight" size={16} /></a>
               </div>
               <small className="offer-footnote">Состав и стоимость уточняйте при заказе.</small>
             </div>

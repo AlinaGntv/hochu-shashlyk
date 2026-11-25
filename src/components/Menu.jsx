@@ -64,7 +64,7 @@ export default function Menu({ initialMenu } = {}) {
               </button>
             ))}
           </div>
-          <a className="link-more" href="/menu.html">
+          <a className="link-more" href="/menu">
             Всё меню <Icon name="arrowRight" size={16} />
           </a>
         </div>

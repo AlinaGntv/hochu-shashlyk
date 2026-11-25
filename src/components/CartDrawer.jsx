@@ -41,7 +41,7 @@ export default function CartDrawer() {
         {cart.items.length ? <ul className="cart-items">{cart.items.map((item) => <li className="cart-item" key={item.id}>
           <div className="cart-item__info"><strong>{item.name}</strong><span>{money(item.price)}{item.weight ? ` · ${item.weight}` : ''}</span></div>
           <div className="cart-item__controls"><button type="button" aria-label={`Уменьшить количество: ${item.name}`} onClick={() => cart.setQuantity(item.id, item.quantity - 1)}>−</button><span>{item.quantity}</span><button type="button" aria-label={`Увеличить количество: ${item.name}`} onClick={() => cart.setQuantity(item.id, item.quantity + 1)}>+</button><strong>{money(item.price * item.quantity)}</strong><button className="cart-item__remove" type="button" onClick={() => cart.removeItem(item.id)} aria-label={`Убрать ${item.name}`}>×</button></div>
-        </li>)}</ul> : <div className="cart-empty"><span>Корзина пока пуста</span><a href="/menu.html" onClick={cart.closeCart}>Перейти в меню →</a></div>}
+        </li>)}</ul> : <div className="cart-empty"><span>Корзина пока пуста</span><a href="/menu" onClick={cart.closeCart}>Перейти в меню →</a></div>}
         {!!cart.items.length && <>
           <div className="cart-subtotal"><span>Сумма блюд</span><strong>{money(cart.subtotal)}</strong></div>
           <p className="cart-delivery-hint">Стоимость и возможность доставки по вашему адресу подтвердим по телефону. Оплата — банковской картой через терминал курьера при получении.</p>
@@ -52,7 +52,7 @@ export default function CartDrawer() {
             <label>Адрес доставки<input name="address" autoComplete="street-address" required minLength="5" maxLength="250" placeholder="Город, улица, дом, квартира" /></label>
             <label>Комментарий к заказу<textarea name="note" rows="2" maxLength="500" placeholder="Подъезд, этаж, домофон, пожелания" /></label>
             <p className="cart-payment"><strong>Оплата:</strong> банковской картой через терминал курьера при получении. Онлайн-оплата недоступна.</p>
-            <label className="request-consent"><input type="checkbox" name="consent" required /><span>Я даю отдельное согласие на обработку данных для оформления и доставки заказа. <a href="/personal-data-consent.html" target="_blank" rel="noreferrer">Текст согласия</a>. Политика: <a href="/privacy.html" target="_blank" rel="noreferrer">прочитать</a>.</span></label>
+            <label className="request-consent"><input type="checkbox" name="consent" required /><span>Я даю отдельное согласие на обработку данных для оформления и доставки заказа. <a href="/personal-data-consent" target="_blank" rel="noreferrer">Текст согласия</a>. Политика: <a href="/privacy" target="_blank" rel="noreferrer">прочитать</a>.</span></label>
             {status?.error && <div className="request-status" role="alert">{status.error}</div>}
             <button className="btn" disabled={busy}>{busy ? 'Отправляем…' : 'Оформить заказ · ' + money(cart.subtotal)}</button>
             <small>Отправка заказа — запрос на подтверждение. Заказ будет принят после звонка сотрудника.</small>

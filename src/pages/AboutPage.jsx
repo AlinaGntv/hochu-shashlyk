@@ -67,7 +67,7 @@ export default function AboutPage() {
                 мясо, рыбу и овощи, приготовленные на углях.
               </p>
               <div className="about-hero__actions">
-                <a className="btn" href="/menu.html">Смотреть меню <Icon name="arrowRight" size={18} /></a>
+                <a className="btn" href="/menu">Смотреть меню <Icon name="arrowRight" size={18} /></a>
                 <a className="about-text-link" href={site.phoneHref}><Icon name="phone" size={17} /> Заказать по телефону</a>
               </div>
             </div>

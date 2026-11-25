@@ -2,8 +2,37 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'node:path'
 
+const friendlyRoutes = {
+  '/menu': '/menu.html',
+  '/about': '/about.html',
+  '/promo': '/promos.html',
+  '/promos': '/promos.html',
+  '/contacts': '/contacts.html',
+  '/admin': '/admin.html',
+  '/privacy': '/privacy.html',
+  '/personal-data-consent': '/personal-data-consent.html',
+  '/order-delivery': '/order-delivery.html',
+  '/requisites': '/requisites.html',
+}
+
+function friendlyUrlDevelopment() {
+  return {
+    name: 'friendly-url-development',
+    configureServer(server) {
+      server.middlewares.use((request, _response, next) => {
+        if (!request.url) return next()
+        const separator = request.url.indexOf('?')
+        const pathname = (separator < 0 ? request.url : request.url.slice(0, separator)).replace(/\/$/, '') || '/'
+        const html = friendlyRoutes[pathname]
+        if (html) request.url = `${html}${separator < 0 ? '' : request.url.slice(separator)}`
+        next()
+      })
+    },
+  }
+}
+
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), friendlyUrlDevelopment()],
   server: { port: 5173 },
   build: {
     rollupOptions: {

@@ -158,10 +158,10 @@ export function Footer() {
         </div>
         <nav aria-label="Юридическая информация">
           <h4>Информация</h4>
-          <a href="/privacy.html">Политика обработки данных</a>
-          <a href="/personal-data-consent.html">Согласие на обработку данных</a>
-          <a href="/order-delivery.html">Условия заказа и доставки</a>
-          <a href="/requisites.html">Реквизиты</a>
+          <a href="/privacy">Политика обработки данных</a>
+          <a href="/personal-data-consent">Согласие на обработку данных</a>
+          <a href="/order-delivery">Условия заказа и доставки</a>
+          <a href="/requisites">Реквизиты</a>
         </nav>
       </div>
       <p className="container footer__copy">

@@ -1,1 +1,11 @@
+RewriteEngine On
+
+# Старые ссылки переводим на короткие адреса.
+RewriteRule ^promos\.html$ /promo [R=301,L]
+RewriteRule ^(menu|about|contacts|admin|privacy|personal-data-consent|order-delivery|requisites)\.html$ /$1 [R=301,L]
+
+# Короткие публичные адреса отображаются на HTML-файлы сборки.
+RewriteRule ^promo/?$ promos.html [L]
+RewriteRule ^(menu|about|contacts|admin|privacy|personal-data-consent|order-delivery|requisites)/?$ $1.html [L]
+
 ErrorDocument 404 /404.html

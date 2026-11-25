@@ -15,7 +15,7 @@ export default function NotFoundPage() {
           <p>Похоже, ссылка устарела или адрес введён с ошибкой. Давайте вернёмся к меню и найдём что-нибудь вкусное.</p>
           <div className="not-found__actions">
             <a className="btn" href="/">На главную <Icon name="arrowRight" size={17} /></a>
-            <a className="not-found__menu" href="/menu.html">Открыть меню <Icon name="arrowRight" size={16} /></a>
+            <a className="not-found__menu" href="/menu">Открыть меню <Icon name="arrowRight" size={16} /></a>
           </div>
           <span className="not-found__flame" aria-hidden="true"><Icon name="flameFill" size={28} /></span>
         </div>
