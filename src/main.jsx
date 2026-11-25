@@ -5,4 +5,4 @@ import './styles.css'
 import App from './App.jsx'
 import mount from './mount.jsx'
 
-mount(App)
+mount(App, { initialMenu: window.__HS_MENU__ })

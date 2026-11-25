@@ -4,8 +4,8 @@ import { Icon, Photo } from './ui.jsx'
 
 const BADGES = { hit: 'Хит', new: 'New' }
 
-export default function Menu() {
-  const menu = useMenu()
+export default function Menu({ initialMenu } = {}) {
+  const menu = useMenu(initialMenu)
   const [tab, setTab] = useState(menu[0].id)
   const [page, setPage] = useState(0)
   const [pages, setPages] = useState(1)

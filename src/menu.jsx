@@ -5,4 +5,4 @@ import './styles.css'
 import MenuPage from './pages/MenuPage.jsx'
 import mount from './mount.jsx'
 
-mount(MenuPage)
+mount(MenuPage, { initialMenu: window.__HS_MENU__ })

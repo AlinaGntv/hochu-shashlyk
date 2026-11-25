@@ -58,8 +58,8 @@ function ProductCard({ item, index, onOrder }) {
   )
 }
 
-export default function MenuPage() {
-  const menu = useMenu()
+export default function MenuPage({ initialMenu } = {}) {
+  const menu = useMenu(initialMenu)
   const [category, setCategory] = useState('all')
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState('popular')
