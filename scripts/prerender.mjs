@@ -12,6 +12,7 @@ const pages = [
   { file: 'about.html', module: '/src/pages/AboutPage.jsx' },
   { file: 'promos.html', module: '/src/pages/PromosPage.jsx' },
   { file: 'contacts.html', module: '/src/pages/ContactsPage.jsx' },
+  { file: '404.html', module: '/src/pages/NotFoundPage.jsx' },
 ]
 
 const vite = await createServer({

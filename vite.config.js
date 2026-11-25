@@ -18,6 +18,7 @@ export default defineConfig({
         consent: resolve(import.meta.dirname, 'personal-data-consent.html'),
         orderDelivery: resolve(import.meta.dirname, 'order-delivery.html'),
         requisites: resolve(import.meta.dirname, 'requisites.html'),
+        notFound: resolve(import.meta.dirname, '404.html'),
       },
     },
   },
