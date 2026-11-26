@@ -52,7 +52,10 @@ async function ensureCurrentMenu() {
         catch (error) { if (error.code !== 'EEXIST') throw error }
       }
       const savedPhotos = new Map((Array.isArray(savedMenu) ? savedMenu : []).flatMap((group) => (group.items || []).filter((item) => item.photo).map((item) => [item.name, item.photo])))
-      const updatedMenu = defaultMenu.map((group) => ({ ...group, items: group.items.map((item) => ({ ...item, photo: savedPhotos.get(item.name) || item.photo || null })) }))
+      const updatedMenu = defaultMenu.map((group) => ({ ...group, items: group.items.map((item) => {
+          const photo = savedPhotos.get(item.name) || item.photo || item.photos?.[0] || null
+          return { ...item, photo, photos: [...new Set([photo, ...(Array.isArray(item.photos) ? item.photos : [])].filter(Boolean))] }
+        }) }))
       await writeJson(menuFile, updatedMenu)
       await writeJson(menuRevisionFile, { revision: menuRevision })
     })().catch((error) => { menuInitialization = null; throw error })

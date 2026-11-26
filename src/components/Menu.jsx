@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import useMenu from '../hooks/useMenu.js'
-import { Icon, Photo } from './ui.jsx'
+import { Icon } from './ui.jsx'
+import PhotoGallery from './PhotoGallery.jsx'
 import { useCart } from '../context/CartContext.jsx'
 
 const BADGES = { hit: 'Хит', new: 'New' }
@@ -83,7 +84,7 @@ export default function Menu({ initialMenu } = {}) {
             {items.map((item) => (
               <li className="card" key={item.name}>
                 <div className="card__photo">
-                  <Photo src={item.photo} alt={item.name.toLowerCase()} />
+                  <PhotoGallery item={item} alt={item.name.toLowerCase()} />
                   {item.badge && (
                     <span className={`badge badge--${item.badge}`}>{BADGES[item.badge]}</span>
                   )}

@@ -9,7 +9,15 @@
         "weight": "100 г",
         "price": 170,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/3990.webp",
+        "photos": [
+          "/images/menu/3990.webp",
+          "/images/menu/3991.webp",
+          "/images/menu/3994.webp",
+          "/images/menu/3998.webp",
+          "/images/menu/4001.webp",
+          "/images/menu/4005.webp"
+        ]
       },
       {
         "id": "fish-dorado",
@@ -17,7 +25,12 @@
         "weight": "100 г",
         "price": 270,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/3966.webp",
+        "photos": [
+          "/images/menu/3966.webp",
+          "/images/menu/3967.webp",
+          "/images/menu/3968.webp"
+        ]
       },
       {
         "id": "fish-seabass",
@@ -25,7 +38,14 @@
         "weight": "100 г",
         "price": 270,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/3969.webp",
+        "photos": [
+          "/images/menu/3969.webp",
+          "/images/menu/3971.webp",
+          "/images/menu/3976.webp",
+          "/images/menu/3980.webp",
+          "/images/menu/3984.webp"
+        ]
       },
       {
         "id": "fish-salmon",
@@ -33,7 +53,14 @@
         "weight": "100 г",
         "price": 450,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/3959.webp",
+        "photos": [
+          "/images/menu/3959.webp",
+          "/images/menu/3962.webp",
+          "/images/menu/3963.webp",
+          "/images/menu/3964.webp",
+          "/images/menu/3965.webp"
+        ]
       },
       {
         "id": "fish-trout",
@@ -41,7 +68,12 @@
         "weight": "100 г",
         "price": 260,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/3986.webp",
+        "photos": [
+          "/images/menu/3986.webp",
+          "/images/menu/3988.webp",
+          "/images/menu/3989.webp"
+        ]
       }
     ]
   },
@@ -55,7 +87,14 @@
         "weight": "200 г",
         "price": 200,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/4025.webp",
+        "photos": [
+          "/images/menu/4025.webp",
+          "/images/menu/4027.webp",
+          "/images/menu/4028.webp",
+          "/images/menu/4032.webp",
+          "/images/menu/4033.webp"
+        ]
       },
       {
         "id": "side-grilled-vegetables",
@@ -63,7 +102,13 @@
         "weight": "200 г",
         "price": 280,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/4043.webp",
+        "photos": [
+          "/images/menu/4043.webp",
+          "/images/menu/4044.webp",
+          "/images/menu/4045.webp",
+          "/images/menu/4046.webp"
+        ]
       },
       {
         "id": "side-mushrooms",
@@ -71,7 +116,14 @@
         "weight": "200 г",
         "price": 290,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/4048.webp",
+        "photos": [
+          "/images/menu/4048.webp",
+          "/images/menu/4050.webp",
+          "/images/menu/4052.webp",
+          "/images/menu/4053.webp",
+          "/images/menu/4056.webp"
+        ]
       },
       {
         "id": "side-vegetable-set",
@@ -79,7 +131,13 @@
         "weight": "—",
         "price": 450,
         "text": "По 1 шт. каждого овоща",
-        "photo": null
+        "photo": "/images/menu/4043.webp",
+        "photos": [
+          "/images/menu/4043.webp",
+          "/images/menu/4044.webp",
+          "/images/menu/4045.webp",
+          "/images/menu/4046.webp"
+        ]
       },
       {
         "id": "side-suluguni",
@@ -87,7 +145,8 @@
         "weight": "250 г",
         "price": 350,
         "text": "На углях",
-        "photo": null
+        "photo": null,
+        "photos": []
       }
     ]
   },
@@ -101,7 +160,14 @@
         "weight": "300 г",
         "price": 300,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/4079.webp",
+        "photos": [
+          "/images/menu/4079.webp",
+          "/images/menu/4080.webp",
+          "/images/menu/4081.webp",
+          "/images/menu/4083.webp",
+          "/images/menu/4084.webp"
+        ]
       },
       {
         "id": "grill-chicken-breast",
@@ -109,7 +175,15 @@
         "weight": "300 г",
         "price": 420,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/4010.webp",
+        "photos": [
+          "/images/menu/4010.webp",
+          "/images/menu/4011.webp",
+          "/images/menu/4014.webp",
+          "/images/menu/4015.webp",
+          "/images/menu/4017.webp",
+          "/images/menu/4018.webp"
+        ]
       },
       {
         "id": "grill-chicken-thigh",
@@ -117,7 +191,14 @@
         "weight": "100 г",
         "price": 120,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/4034.webp",
+        "photos": [
+          "/images/menu/4034.webp",
+          "/images/menu/4036.webp",
+          "/images/menu/4038.webp",
+          "/images/menu/4040.webp",
+          "/images/menu/4042.webp"
+        ]
       },
       {
         "id": "grill-turkey",
@@ -125,7 +206,12 @@
         "weight": "300 г",
         "price": 580,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/3913.webp",
+        "photos": [
+          "/images/menu/3913.webp",
+          "/images/menu/3917.webp",
+          "/images/menu/3918.webp"
+        ]
       },
       {
         "id": "grill-veal",
@@ -133,7 +219,8 @@
         "weight": "100 г",
         "price": 280,
         "text": "На мангале",
-        "photo": null
+        "photo": null,
+        "photos": []
       },
       {
         "id": "grill-pork-neck",
@@ -141,7 +228,13 @@
         "weight": "300 г",
         "price": 480,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/4019.webp",
+        "photos": [
+          "/images/menu/4019.webp",
+          "/images/menu/4021.webp",
+          "/images/menu/4022.webp",
+          "/images/menu/4024.webp"
+        ]
       },
       {
         "id": "grill-pork-ribs",
@@ -149,7 +242,12 @@
         "weight": "300 г",
         "price": 420,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/4007.webp",
+        "photos": [
+          "/images/menu/4007.webp",
+          "/images/menu/4008.webp",
+          "/images/menu/4009.webp"
+        ]
       },
       {
         "id": "grill-pork-loin",
@@ -157,7 +255,12 @@
         "weight": "100 г",
         "price": 140,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/4059.webp",
+        "photos": [
+          "/images/menu/4059.webp",
+          "/images/menu/4060.webp",
+          "/images/menu/4063.webp"
+        ]
       },
       {
         "id": "grill-lamb-loin",
@@ -165,7 +268,13 @@
         "weight": "300 г",
         "price": 900,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/4068.webp",
+        "photos": [
+          "/images/menu/4068.webp",
+          "/images/menu/4069.webp",
+          "/images/menu/4071.webp",
+          "/images/menu/4072.webp"
+        ]
       },
       {
         "id": "grill-lamb-pulp",
@@ -173,7 +282,13 @@
         "weight": "300 г",
         "price": 800,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/4064.webp",
+        "photos": [
+          "/images/menu/4064.webp",
+          "/images/menu/4065.webp",
+          "/images/menu/4066.webp",
+          "/images/menu/4067.webp"
+        ]
       },
       {
         "id": "grill-lamb-ribs",
@@ -181,7 +296,11 @@
         "weight": "300 г",
         "price": 720,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/4012.webp",
+        "photos": [
+          "/images/menu/4012.webp",
+          "/images/menu/4013.webp"
+        ]
       },
       {
         "id": "grill-liver-fat-tail",
@@ -189,7 +308,11 @@
         "weight": "300 г",
         "price": 380,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/3912.webp",
+        "photos": [
+          "/images/menu/3912.webp",
+          "/images/menu/3915.webp"
+        ]
       }
     ]
   },
@@ -203,7 +326,13 @@
         "weight": "250 г",
         "price": 300,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/4073.webp",
+        "photos": [
+          "/images/menu/4073.webp",
+          "/images/menu/4074.webp",
+          "/images/menu/4076.webp",
+          "/images/menu/4077.webp"
+        ]
       },
       {
         "id": "lula-beef",
@@ -211,7 +340,12 @@
         "weight": "250 г",
         "price": 420,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/3955.webp",
+        "photos": [
+          "/images/menu/3955.webp",
+          "/images/menu/3956.webp",
+          "/images/menu/3957.webp"
+        ]
       },
       {
         "id": "lula-lamb",
@@ -219,7 +353,12 @@
         "weight": "250 г",
         "price": 490,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/3955.webp",
+        "photos": [
+          "/images/menu/3955.webp",
+          "/images/menu/3956.webp",
+          "/images/menu/3957.webp"
+        ]
       },
       {
         "id": "lula-pork",
@@ -227,7 +366,12 @@
         "weight": "250 г",
         "price": 400,
         "text": "На мангале",
-        "photo": null
+        "photo": "/images/menu/3955.webp",
+        "photos": [
+          "/images/menu/3955.webp",
+          "/images/menu/3956.webp",
+          "/images/menu/3957.webp"
+        ]
       }
     ]
   },
@@ -241,7 +385,14 @@
         "weight": "3,5 кг",
         "price": 4390,
         "text": "Мяса 2,4 кг · вес указан в сыром виде",
-        "photo": null
+        "photo": "/images/menu/3940.webp",
+        "photos": [
+          "/images/menu/3940.webp",
+          "/images/menu/3941.webp",
+          "/images/menu/3943.webp",
+          "/images/menu/3944.webp",
+          "/images/menu/3945.webp"
+        ]
       },
       {
         "id": "assortment-l",
@@ -249,7 +400,14 @@
         "weight": "4,7 кг",
         "price": 6780,
         "text": "Мяса 3,3 кг · вес указан в сыром виде",
-        "photo": null
+        "photo": "/images/menu/3940.webp",
+        "photos": [
+          "/images/menu/3940.webp",
+          "/images/menu/3941.webp",
+          "/images/menu/3943.webp",
+          "/images/menu/3944.webp",
+          "/images/menu/3945.webp"
+        ]
       },
       {
         "id": "assortment-xxl",
@@ -257,7 +415,14 @@
         "weight": "9 кг",
         "price": 11150,
         "text": "Мяса 7,2 кг · вес указан в сыром виде",
-        "photo": null
+        "photo": "/images/menu/3940.webp",
+        "photos": [
+          "/images/menu/3940.webp",
+          "/images/menu/3941.webp",
+          "/images/menu/3943.webp",
+          "/images/menu/3944.webp",
+          "/images/menu/3945.webp"
+        ]
       },
       {
         "id": "assortment-lula",
@@ -265,7 +430,11 @@
         "weight": "3,3 кг",
         "price": 4050,
         "text": "Мяса 1,8 кг · вес указан в сыром виде",
-        "photo": null
+        "photo": "/images/menu/3936.webp",
+        "photos": [
+          "/images/menu/3936.webp",
+          "/images/menu/3938.webp"
+        ]
       },
       {
         "id": "assortment-no-pork",
@@ -273,7 +442,13 @@
         "weight": "5,2 кг",
         "price": 6810,
         "text": "Мяса 3,9 кг · вес указан в сыром виде",
-        "photo": null
+        "photo": "/images/menu/3948.webp",
+        "photos": [
+          "/images/menu/3948.webp",
+          "/images/menu/3949.webp",
+          "/images/menu/3951.webp",
+          "/images/menu/3954.webp"
+        ]
       }
     ]
   },
@@ -287,7 +462,12 @@
         "weight": "",
         "price": 60,
         "text": "Соус к блюдам на мангале",
-        "photo": null
+        "photo": "/images/menu/3939.webp",
+        "photos": [
+          "/images/menu/3939.webp",
+          "/images/menu/3923.webp",
+          "/images/menu/3928.webp"
+        ]
       },
       {
         "id": "sauce-narsharab",
@@ -295,7 +475,12 @@
         "weight": "",
         "price": 60,
         "text": "Соус к блюдам на мангале",
-        "photo": null
+        "photo": "/images/menu/3932.webp",
+        "photos": [
+          "/images/menu/3932.webp",
+          "/images/menu/3933.webp",
+          "/images/menu/3934.webp"
+        ]
       },
       {
         "id": "sauce-shashlik",
@@ -303,7 +488,13 @@
         "weight": "",
         "price": 60,
         "text": "Соус к блюдам на мангале",
-        "photo": null
+        "photo": "/images/menu/3926.webp",
+        "photos": [
+          "/images/menu/3926.webp",
+          "/images/menu/3927.webp",
+          "/images/menu/3930.webp",
+          "/images/menu/3931.webp"
+        ]
       }
     ]
   }

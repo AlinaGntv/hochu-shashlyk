@@ -3,7 +3,8 @@ import Header from '../components/Header.jsx'
 import { Footer } from '../components/Sections.jsx'
 import { site } from '../data/site.js'
 import useMenu from '../hooks/useMenu.js'
-import { Icon, Photo } from '../components/ui.jsx'
+import { Icon } from '../components/ui.jsx'
+import PhotoGallery from '../components/PhotoGallery.jsx'
 import Pagination from '../components/Pagination.jsx'
 import { useCart } from '../context/CartContext.jsx'
 
@@ -35,7 +36,7 @@ function ProductCard({ item, index, onOrder }) {
       style={{ animationDelay: `${Math.min(index, 8) * 35}ms` }}
     >
       <div className="catalog-card__photo">
-        <Photo src={item.photo} alt={item.name.toLowerCase()} />
+        <PhotoGallery item={item} alt={item.name.toLowerCase()} />
         {item.badge && (
           <span className={`badge badge--${item.badge}`}>{BADGES[item.badge]}</span>
         )}

@@ -11,6 +11,7 @@ try {
     ...item,
     id: item.id || item.name.trim().toLocaleLowerCase('ru-RU').replace(/[^a-zа-я0-9]+/gi, '-'),
     photo: item.photo && !item.photo.startsWith('/src/') ? item.photo : null,
+    photos: Array.isArray(item.photos) ? [...new Set(item.photos.filter((photo) => typeof photo === 'string' && photo.startsWith('/images/')))] : [],
   })) }))
   await mkdir(path.join(root, 'server'), { recursive: true })
   await writeFile(path.join(root, 'server', 'default-menu.json'), `${JSON.stringify(defaultMenu, null, 2)}\n`)
