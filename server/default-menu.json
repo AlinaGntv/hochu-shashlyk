@@ -145,8 +145,10 @@
         "weight": "250 г",
         "price": 350,
         "text": "На углях",
-        "photo": null,
-        "photos": []
+        "photo": "/images/menu/suluguni.webp",
+        "photos": [
+          "/images/menu/suluguni.webp"
+        ]
       }
     ]
   },
@@ -191,9 +193,10 @@
         "weight": "100 г",
         "price": 120,
         "text": "На мангале",
-        "photo": null,
-        "photos": [],
-        "hidePhoto": true
+        "photo": "/images/menu/chicken-thigh.webp",
+        "photos": [
+          "/images/menu/chicken-thigh.webp"
+        ]
       },
       {
         "id": "grill-turkey",
@@ -201,9 +204,10 @@
         "weight": "300 г",
         "price": 580,
         "text": "На мангале",
-        "photo": null,
-        "photos": [],
-        "hidePhoto": true
+        "photo": "/images/menu/turkey.webp",
+        "photos": [
+          "/images/menu/turkey.webp"
+        ]
       },
       {
         "id": "grill-veal",
@@ -211,8 +215,10 @@
         "weight": "100 г",
         "price": 280,
         "text": "На мангале",
-        "photo": null,
-        "photos": []
+        "photo": "/images/menu/veal.webp",
+        "photos": [
+          "/images/menu/veal.webp"
+        ]
       },
       {
         "id": "grill-pork-neck",
