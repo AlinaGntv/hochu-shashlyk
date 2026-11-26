@@ -32,109 +32,114 @@ export const nav = [
   { label: 'Контакты', href: '/contacts' },
 ]
 
-// Слайды первого экрана. Первый — из макета, остальные три — заглушки.
+// Слайды первого экрана показывают позиции из актуального меню.
 export const heroSlides = [
   {
     tag: 'Настоящий',
     title: 'Шашлык',
-    price: 'от 400 ₽',
-    text: 'Сочное мясо, маринованное по фирменному рецепту и приготовленное на углях',
-    weight: '300 г',
+    price: 'от 120 ₽',
+    text: 'Птица, телятина, свинина и баранина на мангале',
+    weight: 'за 100 г',
     photo: p('hero-shashlik'),
   },
   {
     tag: 'Сочный',
     title: 'Люля',
-    price: 'от 350 ₽',
-    text: 'Рубленое мясо со специями и зеленью, с дымком прямо с мангала',
+    price: 'от 300 ₽',
+    text: 'Куриный, говяжий, бараний и свиной',
     weight: '250 г',
     photo: p('hero-lula'),
   },
   {
     tag: 'С углей',
     title: 'Рыба',
-    price: 'от 690 ₽',
-    text: 'Нежная рыба на решётке с лимоном и ароматом дыма',
-    weight: '300 г',
+    price: 'от 170 ₽',
+    text: 'Скумбрия, дорадо, сибас, сёмга и форель',
+    weight: 'за 100 г',
     photo: p('hero-fish'),
   },
   {
-    tag: 'Горячая',
-    title: 'Шаурма',
-    price: 'от 280 ₽',
-    text: 'Классическая в лаваше с мясом с углей и фирменным соусом',
-    weight: '350 г',
-    photo: p('hero-shawarma'),
+    tag: 'На компанию',
+    title: 'Ассорти',
+    price: 'от 4 050 ₽',
+    text: 'Наборы от шефа для больших компаний',
+    weight: 'общий вес от 3,3 кг',
+    photo: p('platter'),
   },
 ]
 
-// badge: 'hit' | 'new' | undefined
-// «Новинки» — из макета, остальные категории пока заполнены заглушками.
+// Каталог и цены из актуального меню. Вес для мясных и рыбных позиций указан в сыром виде.
+const dish = (id, name, weight, price, text, photo = null) => ({ id, name, weight, price, text, photo })
+
 export const menu = [
   {
-    id: 'new',
-    title: 'Новинки',
+    id: 'fish',
+    title: 'Рыба на мангале',
     items: [
-      { name: 'Свиная шея', text: 'Сочный шашлык на углях', price: 420, weight: '300 г', badge: 'hit', photo: p('pork-neck') },
-      { name: 'Сёмга на углях', text: 'Нежная рыба с ароматом дымка', price: 1150, weight: '300 г', badge: 'new', photo: p('salmon') },
-      { name: 'Шаурма куриная', text: 'Классическая в лаваше с фирменным соусом', price: 280, weight: '350 г', photo: p('shawarma-chicken') },
-      { name: 'Люля из баранины', text: 'Рубленое мясо со специями', price: 390, weight: '250 г', badge: 'new', photo: p('lula-lamb') },
-      { name: 'Куриные крылья', text: 'В остром маринаде на решётке', price: 350, weight: '300 г', photo: p('wings') },
-      { name: 'Овощи гриль', text: 'Перец, кабачок, томаты, шампиньоны', price: 250, weight: '250 г', photo: p('vegetables') },
+      dish('fish-mackerel', 'Скумбрия', '100 г', 170, 'На мангале', p('mackerel')),
+      dish('fish-dorado', 'Дорадо', '100 г', 270, 'На мангале'),
+      dish('fish-seabass', 'Сибас', '100 г', 270, 'На мангале'),
+      dish('fish-salmon', 'Сёмга', '100 г', 450, 'На мангале', p('salmon')),
+      dish('fish-trout', 'Форель', '100 г', 260, 'На мангале', p('trout')),
     ],
   },
   {
-    id: 'shashlik',
-    title: 'Шашлык',
+    id: 'sides',
+    title: 'Овощи и гарниры',
     items: [
-      { name: 'Свиная шея', text: 'Сочный шашлык на углях', price: 420, weight: '300 г', badge: 'hit', photo: p('pork-neck') },
-      { name: 'Куриное бедро', text: 'Мягкое мясо в пряном маринаде', price: 400, weight: '300 г', photo: p('chicken') },
-      { name: 'Баранина', text: 'Мякоть на шампуре с луком', price: 650, weight: '300 г', photo: p('lamb') },
+      dish('side-potato', 'Картофель гриль', '200 г', 200, 'На мангале', p('potato')),
+      dish('side-grilled-vegetables', 'Овощи гриль', '200 г', 280, 'На мангале', p('vegetables')),
+      dish('side-mushrooms', 'Шампиньоны гриль', '200 г', 290, 'На мангале'),
+      dish('side-vegetable-set', 'Овощи (баклажан, перец, помидор)', '—', 450, 'По 1 шт. каждого овоща'),
+      dish('side-suluguni', 'Сулугуни на углях', '250 г', 350, 'На углях'),
+    ],
+  },
+  {
+    id: 'grill',
+    title: 'Птица и мясо на мангале',
+    items: [
+      dish('grill-chicken-wings', 'Куриные крылья', '300 г', 300, 'На мангале', p('wings')),
+      dish('grill-chicken-breast', 'Куриная грудка', '300 г', 420, 'На мангале', p('chicken')),
+      dish('grill-chicken-thigh', 'Куриное бедро', '100 г', 120, 'На мангале', p('chicken')),
+      dish('grill-turkey', 'Индейка', '300 г', 580, 'На мангале'),
+      dish('grill-veal', 'Телятина', '100 г', 280, 'На мангале'),
+      dish('grill-pork-neck', 'Свиная шея', '300 г', 480, 'На мангале', p('pork-neck')),
+      dish('grill-pork-ribs', 'Свиные рёбра', '300 г', 420, 'На мангале'),
+      dish('grill-pork-loin', 'Свиная корейка', '100 г', 140, 'На мангале'),
+      dish('grill-lamb-loin', 'Баранья корейка', '300 г', 900, 'На мангале'),
+      dish('grill-lamb-pulp', 'Баранья мякоть', '300 г', 800, 'На мангале', p('lamb')),
+      dish('grill-lamb-ribs', 'Бараньи семечки', '300 г', 720, 'На мангале'),
+      dish('grill-liver-fat-tail', 'Печень курдюк', '300 г', 380, 'На мангале'),
     ],
   },
   {
     id: 'lula',
     title: 'Люля-кебаб',
     items: [
-      { name: 'Люля из баранины', text: 'Рубленое мясо со специями', price: 390, weight: '250 г', photo: p('lula-lamb') },
-      { name: 'Люля из курицы', text: 'Нежный кебаб с зеленью', price: 350, weight: '250 г', photo: p('lula-chicken') },
-      { name: 'Люля из говядины', text: 'Плотный и сочный, с дымком', price: 420, weight: '250 г', photo: p('lula-beef') },
+      dish('lula-chicken', 'Люля куриный', '250 г', 300, 'На мангале', p('lula-chicken')),
+      dish('lula-beef', 'Люля говяжий', '250 г', 420, 'На мангале', p('lula-beef')),
+      dish('lula-lamb', 'Люля бараний', '250 г', 490, 'На мангале', p('lula-lamb')),
+      dish('lula-pork', 'Люля свиной', '250 г', 400, 'На мангале'),
     ],
   },
   {
-    id: 'fish',
-    title: 'Рыба',
+    id: 'assortment',
+    title: 'Ассорти от шефа',
     items: [
-      { name: 'Сёмга на углях', text: 'Нежная рыба с ароматом дымка', price: 1150, weight: '300 г', badge: 'new', photo: p('salmon') },
-      { name: 'Форель', text: 'Целая рыба на решётке с лимоном', price: 890, weight: '350 г', photo: p('trout') },
-      { name: 'Скумбрия', text: 'Жирная рыба с хрустящей кожей', price: 690, weight: '300 г', photo: p('mackerel') },
+      dish('assortment-m', 'Ассорти на 4–6 персон (M)', '3,5 кг', 4390, 'Мяса 2,4 кг · вес указан в сыром виде', p('platter')),
+      dish('assortment-l', 'Ассорти на 6–8 персон (L)', '4,7 кг', 6780, 'Мяса 3,3 кг · вес указан в сыром виде', p('platter')),
+      dish('assortment-xxl', 'Ассорти на 12–14 персон (XXL)', '9 кг', 11150, 'Мяса 7,2 кг · вес указан в сыром виде', p('platter')),
+      dish('assortment-lula', 'Ассорти из люля-кебабов', '3,3 кг', 4050, 'Мяса 1,8 кг · вес указан в сыром виде', p('platter')),
+      dish('assortment-no-pork', 'Ассорти на 6–8 персон без свинины', '5,2 кг', 6810, 'Мяса 3,9 кг · вес указан в сыром виде', p('platter')),
     ],
   },
   {
-    id: 'shaurma',
-    title: 'Шаурма и доги',
+    id: 'sauces',
+    title: 'Соусы',
     items: [
-      { name: 'Шаурма куриная', text: 'Классическая в лаваше с фирменным соусом', price: 280, weight: '350 г', photo: p('shawarma-chicken') },
-      { name: 'Шаурма со свининой', text: 'Мясо с углей, овощи, соус', price: 320, weight: '350 г', photo: p('shawarma-pork') },
-      { name: 'Хот-дог', text: 'Колбаска гриль, соленья, горчица', price: 250, weight: '220 г', photo: p('hotdog') },
-    ],
-  },
-  {
-    id: 'sides',
-    title: 'Гарниры',
-    items: [
-      { name: 'Овощи гриль', text: 'Перец, кабачок, томаты, шампиньоны', price: 250, weight: '250 г', photo: p('vegetables') },
-      { name: 'Картофель на углях', text: 'С чесноком и зеленью', price: 200, weight: '250 г', photo: p('potato') },
-      { name: 'Маринованный лук', text: 'Хрустящий, к любому мясу', price: 80, weight: '100 г', photo: p('onion') },
-    ],
-  },
-  {
-    id: 'bakery',
-    title: 'Выпечка',
-    items: [
-      { name: 'Лаваш', text: 'Тонкий, свежий', price: 50, weight: '100 г', photo: p('lavash') },
-      { name: 'Лепёшка', text: 'Горячая, из тандыра', price: 70, weight: '200 г', photo: p('lepeshka') },
-      { name: 'Хачапури', text: 'С сыром сулугуни', price: 350, weight: '300 г', photo: p('khachapuri') },
+      dish('sauce-garlic', 'Белый чесночный', '', 60, 'Соус к блюдам на мангале'),
+      dish('sauce-narsharab', 'Наршараб', '', 60, 'Соус к блюдам на мангале'),
+      dish('sauce-shashlik', 'Шашлычный', '', 60, 'Соус к блюдам на мангале'),
     ],
   },
 ]

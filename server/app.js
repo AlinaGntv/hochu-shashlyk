@@ -1,19 +1,22 @@
 import crypto from 'node:crypto'
 import fs from 'node:fs/promises'
-import { readFileSync } from 'node:fs'
+import { constants as fsConstants, readFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import express from 'express'
 import multer from 'multer'
 import sharp from 'sharp'
+import { MENU_REVISION } from './menu-version.js'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
 const dataDir = process.env.DATA_DIR || path.join(here, 'data')
 const uploadsDir = process.env.UPLOADS_DIR || path.join(here, 'uploads')
 const menuFile = path.join(dataDir, 'menu.json')
+const menuRevisionFile = path.join(dataDir, 'menu-revision.json')
 const requestsFile = path.join(dataDir, 'requests.json')
 const defaultMenu = JSON.parse(readFileSync(path.join(here, 'default-menu.json'), 'utf8'))
+const menuRevision = MENU_REVISION
 let sessionKey = process.env.ADMIN_PASSWORD || ''
 if (!sessionKey) {
   try { sessionKey = readFileSync(path.join(here, '.admin-password'), 'utf8').trim() }
@@ -36,6 +39,26 @@ async function writeJson(file, value) {
   await fs.writeFile(temp, JSON.stringify(value, null, 2))
   await fs.rename(temp, file)
 }
+let menuInitialization
+async function ensureCurrentMenu() {
+  if (!menuInitialization) {
+    menuInitialization = (async () => {
+      const applied = await readJson(menuRevisionFile, null)
+      if (applied?.revision === menuRevision) return
+      const savedMenu = await readJson(menuFile, null)
+      if (savedMenu) {
+        const backupFile = path.join(dataDir, `menu-before-${menuRevision}.json`)
+        try { await fs.copyFile(menuFile, backupFile, fsConstants.COPYFILE_EXCL) }
+        catch (error) { if (error.code !== 'EEXIST') throw error }
+      }
+      const savedPhotos = new Map((Array.isArray(savedMenu) ? savedMenu : []).flatMap((group) => (group.items || []).filter((item) => item.photo).map((item) => [item.name, item.photo])))
+      const updatedMenu = defaultMenu.map((group) => ({ ...group, items: group.items.map((item) => ({ ...item, photo: savedPhotos.get(item.name) || item.photo || null })) }))
+      await writeJson(menuFile, updatedMenu)
+      await writeJson(menuRevisionFile, { revision: menuRevision })
+    })().catch((error) => { menuInitialization = null; throw error })
+  }
+  return menuInitialization
+}
 function token() { return crypto.createHmac('sha256', sessionKey || 'not-configured').update('admin-session').digest('hex') }
 function cookieOptions(maxAge) {
   return `Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
@@ -57,7 +80,7 @@ const imageUpload = multer({ storage: multer.memoryStorage(), limits: { fileSize
 } })
 
 app.get('/api/menu', async (_req, res, next) => {
-  try { res.json(await readJson(menuFile, defaultMenu)) }
+  try { await ensureCurrentMenu(); res.json(await readJson(menuFile, defaultMenu)) }
   catch (e) { next(e) }
 })
 app.post('/api/admin/login', (req, res) => {
@@ -74,11 +97,12 @@ app.post('/api/admin/logout', (_req, res) => {
 })
 app.get('/api/admin/session', requireAdmin, (_req, res) => res.json({ ok: true }))
 app.get('/api/admin/menu', requireAdmin, async (_req, res, next) => {
-  try { res.json(await readJson(menuFile, null)) }
+  try { await ensureCurrentMenu(); res.json(await readJson(menuFile, null)) }
   catch (e) { next(e) }
 })
 app.put('/api/admin/menu', requireAdmin, async (req, res, next) => {
   try {
+    await ensureCurrentMenu()
     const groups = req.body
     if (!Array.isArray(groups) || groups.some((g) => !g.id || !g.title || !Array.isArray(g.items))) return res.status(400).json({ error: 'Проверьте категории меню.' })
     for (const group of groups) for (const item of group.items) {
@@ -117,6 +141,7 @@ app.post('/api/requests', async (req, res, next) => {
 })
 app.post('/api/orders', async (req, res, next) => {
   try {
+    await ensureCurrentMenu()
     if (req.body?.consent !== true) return res.status(400).json({ error: 'Для оформления заказа необходимо дать согласие на обработку персональных данных.' })
     const name = String(req.body?.name || '').trim().slice(0, 80)
     const phone = String(req.body?.phone || '').trim().slice(0, 40)

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { createServer } from 'vite'
+import { MENU_REVISION } from '../server/menu-version.js'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const pages = [
@@ -24,9 +25,13 @@ const vite = await createServer({
 
 let initialMenu
 try {
-  const savedMenu = await readFile(path.join(root, 'server', 'data', 'menu.json'), 'utf8')
+  const [revisionFile, savedMenu] = await Promise.all([
+    readFile(path.join(root, 'server', 'data', 'menu-revision.json'), 'utf8'),
+    readFile(path.join(root, 'server', 'data', 'menu.json'), 'utf8'),
+  ])
+  const revision = JSON.parse(revisionFile)
   const parsedMenu = JSON.parse(savedMenu)
-  if (Array.isArray(parsedMenu) && parsedMenu.length) initialMenu = parsedMenu
+  if (revision.revision === MENU_REVISION && Array.isArray(parsedMenu) && parsedMenu.length) initialMenu = parsedMenu
 } catch (error) {
   if (error.code !== 'ENOENT') throw error
 }

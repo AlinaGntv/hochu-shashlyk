@@ -190,7 +190,7 @@ export default function MenuPage({ initialMenu } = {}) {
 
           <aside className="catalog-note">
             <span className="catalog-note__spark"><Icon name="flameFill" size={19} /></span>
-            <p>Все блюда готовим после заказа. <strong>Вес и цена указаны в меню.</strong></p>
+            <p><strong>Вес указан в сыром виде.</strong> Для позиций по 100 г цена указана за 100 г, для ассорти — за набор.</p>
             <a href={site.phoneHref}>Позвонить <Icon name="arrowRight" size={15} /></a>
           </aside>
         </div>

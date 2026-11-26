@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 
 const CartContext = createContext({ items: [], count: 0, subtotal: 0, addItem() {}, setQuantity() {}, removeItem() {}, clear() {}, open: false, openCart() {}, closeCart() {} })
-const STORAGE_KEY = 'hs-delivery-cart-v1'
+const STORAGE_KEY = 'hs-delivery-cart-v2'
 const productId = (item) => item.id || item.name.trim().toLocaleLowerCase('ru-RU').replace(/[^a-zа-я0-9]+/gi, '-')
 
 export function CartProvider({ children }) {
