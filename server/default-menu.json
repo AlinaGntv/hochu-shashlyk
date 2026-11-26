@@ -276,9 +276,10 @@
         "weight": "300 г",
         "price": 800,
         "text": "На мангале",
-        "photo": null,
-        "photos": [],
-        "hidePhoto": true
+        "photo": "/images/menu/lamb-pulp.webp",
+        "photos": [
+          "/images/menu/lamb-pulp.webp"
+        ]
       },
       {
         "id": "grill-lamb-ribs",
@@ -298,9 +299,10 @@
         "weight": "300 г",
         "price": 380,
         "text": "На мангале",
-        "photo": null,
-        "photos": [],
-        "hidePhoto": true
+        "photo": "/images/menu/liver-fat-tail.webp",
+        "photos": [
+          "/images/menu/liver-fat-tail.webp"
+        ]
       }
     ]
   },
@@ -314,9 +316,10 @@
         "weight": "250 г",
         "price": 300,
         "text": "На мангале",
-        "photo": null,
-        "photos": [],
-        "hidePhoto": true
+        "photo": "/images/menu/chicken-lula.webp",
+        "photos": [
+          "/images/menu/chicken-lula.webp"
+        ]
       },
       {
         "id": "lula-beef",

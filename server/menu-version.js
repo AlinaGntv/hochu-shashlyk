@@ -1,1 +1,1 @@
-export const MENU_REVISION = '2026-11-26-v7'
+export const MENU_REVISION = '2026-11-26-v8'
