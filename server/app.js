@@ -68,6 +68,8 @@ async function ensureCurrentMenu() {
       }
       const updatedMenu = defaultMenu.map((group) => ({ ...group, items: group.items.map((item) => {
           const replaceWithCatalogPhoto = ['grill-pork-ribs', 'grill-pork-loin'].includes(item.id)
+          const removeUnverifiedPhoto = ['grill-chicken-thigh', 'grill-turkey'].includes(item.id)
+          if (removeUnverifiedPhoto) return { ...item, photo: null, photos: [], hidePhoto: true }
           const photo = replaceWithCatalogPhoto ? item.photo : savedPhotos.get(item.name) || item.photo || item.photos?.[0] || null
           const photos = replaceWithCatalogPhoto ? item.photos : [photo, ...(Array.isArray(item.photos) ? item.photos : [])]
           return { ...item, photo, photos: [...new Set(photos.filter(Boolean))] }

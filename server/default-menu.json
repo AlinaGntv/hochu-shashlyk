@@ -191,14 +191,9 @@
         "weight": "100 г",
         "price": 120,
         "text": "На мангале",
-        "photo": "/images/menu/4034.webp",
-        "photos": [
-          "/images/menu/4034.webp",
-          "/images/menu/4036.webp",
-          "/images/menu/4038.webp",
-          "/images/menu/4040.webp",
-          "/images/menu/4042.webp"
-        ]
+        "photo": null,
+        "photos": [],
+        "hidePhoto": true
       },
       {
         "id": "grill-turkey",
@@ -206,12 +201,9 @@
         "weight": "300 г",
         "price": 580,
         "text": "На мангале",
-        "photo": "/images/menu/3913.webp",
-        "photos": [
-          "/images/menu/3913.webp",
-          "/images/menu/3917.webp",
-          "/images/menu/3918.webp"
-        ]
+        "photo": null,
+        "photos": [],
+        "hidePhoto": true
       },
       {
         "id": "grill-veal",

@@ -9,12 +9,13 @@ function withFallbackPhotos(source) {
       ...group,
       items: (group.items || []).map((item) => {
         const fallback = fallbackItems.get(item.id || item.name) || fallbackItems.get(item.name)
-        const photo = item.photo || fallback?.photo || null
+        const photo = item.hidePhoto ? null : item.photo || fallback?.photo || null
         return {
           ...fallback,
           ...item,
           photo,
-          photos: [...new Set([photo, ...(Array.isArray(item.photos) ? item.photos : []), ...(fallback?.photos || [])].filter(Boolean))],
+          hidePhoto: Boolean(item.hidePhoto),
+          photos: item.hidePhoto ? [] : [...new Set([photo, ...(Array.isArray(item.photos) ? item.photos : []), ...(fallback?.photos || [])].filter(Boolean))],
         }
       }),
     }
