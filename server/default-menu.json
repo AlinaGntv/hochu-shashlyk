@@ -242,11 +242,9 @@
         "weight": "300 г",
         "price": 420,
         "text": "На мангале",
-        "photo": "/images/menu/4007.webp",
+        "photo": "/images/menu/pork-ribs.webp",
         "photos": [
-          "/images/menu/4007.webp",
-          "/images/menu/4008.webp",
-          "/images/menu/4009.webp"
+          "/images/menu/pork-ribs.webp"
         ]
       },
       {
@@ -255,11 +253,9 @@
         "weight": "100 г",
         "price": 140,
         "text": "На мангале",
-        "photo": "/images/menu/4059.webp",
+        "photo": "/images/menu/pork-loin.webp",
         "photos": [
-          "/images/menu/4059.webp",
-          "/images/menu/4060.webp",
-          "/images/menu/4063.webp"
+          "/images/menu/pork-loin.webp"
         ]
       },
       {
