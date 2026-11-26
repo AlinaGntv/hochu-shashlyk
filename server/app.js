@@ -67,7 +67,7 @@ async function ensureCurrentMenu() {
         catch { /* Missing upload: use the current catalog photo. */ }
       }
       const updatedMenu = defaultMenu.map((group) => ({ ...group, items: group.items.map((item) => {
-          const replaceWithCatalogPhoto = ['grill-pork-ribs', 'grill-pork-loin', 'grill-chicken-thigh', 'grill-turkey', 'grill-veal', 'side-suluguni'].includes(item.id)
+          const replaceWithCatalogPhoto = ['grill-pork-ribs', 'grill-pork-loin', 'grill-chicken-thigh', 'grill-turkey', 'grill-veal', 'side-suluguni', 'grill-lamb-pulp', 'grill-liver-fat-tail', 'lula-chicken'].includes(item.id)
           const photo = replaceWithCatalogPhoto ? item.photo : savedPhotos.get(item.name) || item.photo || item.photos?.[0] || null
           const photos = replaceWithCatalogPhoto ? item.photos : [photo, ...(Array.isArray(item.photos) ? item.photos : [])]
           return { ...item, photo, photos: [...new Set(photos.filter(Boolean))] }

@@ -276,13 +276,9 @@
         "weight": "300 г",
         "price": 800,
         "text": "На мангале",
-        "photo": "/images/menu/4064.webp",
-        "photos": [
-          "/images/menu/4064.webp",
-          "/images/menu/4065.webp",
-          "/images/menu/4066.webp",
-          "/images/menu/4067.webp"
-        ]
+        "photo": null,
+        "photos": [],
+        "hidePhoto": true
       },
       {
         "id": "grill-lamb-ribs",
@@ -302,11 +298,9 @@
         "weight": "300 г",
         "price": 380,
         "text": "На мангале",
-        "photo": "/images/menu/3912.webp",
-        "photos": [
-          "/images/menu/3912.webp",
-          "/images/menu/3915.webp"
-        ]
+        "photo": null,
+        "photos": [],
+        "hidePhoto": true
       }
     ]
   },
@@ -320,13 +314,9 @@
         "weight": "250 г",
         "price": 300,
         "text": "На мангале",
-        "photo": "/images/menu/4073.webp",
-        "photos": [
-          "/images/menu/4073.webp",
-          "/images/menu/4074.webp",
-          "/images/menu/4076.webp",
-          "/images/menu/4077.webp"
-        ]
+        "photo": null,
+        "photos": [],
+        "hidePhoto": true
       },
       {
         "id": "lula-beef",
