@@ -125,8 +125,8 @@ export function Socials({ variant = 'round' }) {
 }
 
 // Фото блюда. Пока файла нет — показывает аккуратную заглушку с подписью.
-export function Photo({ src, alt, className = '' }) {
-  if (src) return <img className={`photo ${className}`} src={src} alt={alt} loading="lazy" />
+export function Photo({ src, alt, className = '', onError }) {
+  if (src) return <img className={`photo ${className}`} src={src} alt={alt} loading="lazy" onError={onError} />
   return (
     <div className={`photo photo--empty ${className}`} role="img" aria-label={alt}>
       <span>

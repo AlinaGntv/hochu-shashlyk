@@ -51,7 +51,21 @@ async function ensureCurrentMenu() {
         try { await fs.copyFile(menuFile, backupFile, fsConstants.COPYFILE_EXCL) }
         catch (error) { if (error.code !== 'EEXIST') throw error }
       }
-      const savedPhotos = new Map((Array.isArray(savedMenu) ? savedMenu : []).flatMap((group) => (group.items || []).filter((item) => item.photo).map((item) => [item.name, item.photo])))
+      const savedPhotos = new Map()
+      for (const group of Array.isArray(savedMenu) ? savedMenu : []) for (const item of group.items || []) {
+        if (typeof item.photo !== 'string') continue
+        let savedFile
+        if (item.photo.startsWith('/uploads/')) {
+          const filename = item.photo.slice('/uploads/'.length)
+          if (!filename || path.basename(filename) !== filename) continue
+          savedFile = path.join(uploadsDir, filename)
+        } else if (item.photo.startsWith('/images/menu/')) {
+          savedFile = path.resolve(here, '..', 'public', item.photo.slice(1))
+          if (!savedFile.startsWith(path.resolve(here, '..', 'public') + path.sep)) continue
+        } else continue
+        try { await fs.access(savedFile); savedPhotos.set(item.name, item.photo) }
+        catch { /* Missing upload: use the current catalog photo. */ }
+      }
       const updatedMenu = defaultMenu.map((group) => ({ ...group, items: group.items.map((item) => {
           const photo = savedPhotos.get(item.name) || item.photo || item.photos?.[0] || null
           return { ...item, photo, photos: [...new Set([photo, ...(Array.isArray(item.photos) ? item.photos : [])].filter(Boolean))] }
