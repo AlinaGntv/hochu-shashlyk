@@ -2584,12 +2584,20 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
     right: auto;
     bottom: auto;
     left: auto;
-    height: 300px;
+    width: calc(100% - 24px);
+    max-width: 560px;
+    height: auto;
     transform: none;
-    margin: 12px 14px 0;
+    margin: 12px auto 0;
     border-radius: 20px;
     -webkit-mask-image: none;
     mask-image: none;
+  }
+
+  .hero__media .photo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 
   .hero__content {
@@ -2633,8 +2641,9 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
 }
 @media (max-width: 600px) {
   .hero__media {
-    height: clamp(185px, 48vw, 235px);
-    margin: 10px 12px 0;
+    width: calc(100% - 24px);
+    height: auto;
+    margin: 10px auto 0;
     border-radius: 18px;
   }
 
@@ -2652,5 +2661,5 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
 }
 
 @media (max-width: 360px) {
-  .hero__media { height: 205px; }
+  .hero__media { width: calc(100% - 20px); }
 }
