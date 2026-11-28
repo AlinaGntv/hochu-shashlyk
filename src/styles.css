@@ -2129,6 +2129,7 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
   .hero {
     flex-direction: column;
     min-height: 0;
+    padding-top: 68px;
   }
 
   .hero__media {
