@@ -2530,3 +2530,57 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
   .legal-template-note { padding: 14px; }
   .legal-document { gap: 12px; }
 }
+/* Мягко вписываем светлые фото в тёмные блоки главной. */
+.hero__media,
+.promo__media {
+  overflow: hidden;
+  border: 1px solid rgba(255, 164, 28, .18);
+  border-radius: 24px;
+  box-shadow: 0 18px 54px rgba(0, 0, 0, .34), inset 0 0 0 1px rgba(255, 255, 255, .025);
+}
+
+.hero__media {
+  inset: 16px 20px 16px 36%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 16%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 16%);
+}
+
+.promo__media {
+  inset: 16px 3.5% 16px 34%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 16%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 16%);
+}
+
+.hero__media::after,
+.promo__media::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(11, 10, 9, .2), transparent 42%, rgba(11, 10, 9, .06)), linear-gradient(0deg, rgba(11, 10, 9, .12), transparent 42%);
+  pointer-events: none;
+}
+
+.hero__media img,
+.promo__media img {
+  filter: brightness(.84) saturate(1.06) contrast(1.03);
+}
+
+@media (max-width: 900px) {
+  .hero__media {
+    inset: auto;
+    margin: 12px 14px 0;
+    border-radius: 20px;
+    -webkit-mask-image: linear-gradient(#000 60%, transparent);
+    mask-image: linear-gradient(#000 60%, transparent);
+  }
+
+  .promo__media {
+    inset: 12px 14px;
+    border-radius: 20px;
+    opacity: .42;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
