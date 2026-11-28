@@ -1,13 +1,13 @@
 :root {
-  --bg: #f8f3eb;
-  --bg-card: #fffdf9;
-  --line: rgba(57, 38, 23, 0.13);
-  --text: #302318;
-  --muted: #77685a;
-  --orange: #e85b00;
-  --amber: #bb5600;
+  --bg: #0b0a09;
+  --bg-card: #151311;
+  --line: rgba(255, 255, 255, 0.09);
+  --text: #f6f2ec;
+  --muted: #a8a199;
+  --orange: #ff6a00;
+  --amber: #ffa41c;
   --red: #e5281c;
-  --fire: linear-gradient(100deg, #e95400, #f2a00c);
+  --fire: linear-gradient(100deg, #ff5a00, #ff9a1a);
   --display: 'Dela Gothic One', 'Arial Black', sans-serif;
   --body: 'Onest Variable', system-ui, sans-serif;
   --radius: 18px;
@@ -2505,65 +2505,6 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
 .cart-success p { max-width: 410px; color: var(--muted); font-size: 14px; line-height: 1.65; }
 .cart-success p strong { color: var(--amber); }
 .cart-success .btn { margin-top: 5px; border: 0; }
-
-/* Тёплая светлая тема: цвет углей остаётся в акцентах, поверхности — светлые. */
-body { background: var(--bg); color: var(--text); }
-.header { background: rgba(255, 251, 245, .9); border-bottom: 1px solid var(--line); box-shadow: 0 8px 24px rgba(68, 43, 20, .06); }
-.header.is-open { background: rgba(255, 251, 245, .98); }
-.hero { background: #f6eee2; }
-.hero::after { background: radial-gradient(50% 100% at 20% 100%, rgba(255, 153, 41, .12), transparent 70%), linear-gradient(transparent, var(--bg) 92%); }
-.hero__media { -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 34%); mask-image: linear-gradient(90deg, transparent 0%, #000 34%); }
-.hero__title { text-shadow: 0 2px 18px rgba(255, 250, 242, .45); }
-.hero__text { color: #504235; }
-.embers { opacity: .32; }
-.promo { background: radial-gradient(45% 100% at 0% 100%, rgba(255, 171, 79, .18), transparent 70%), #efe2ce; }
-.promo__media { opacity: .28; -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 54%); mask-image: linear-gradient(90deg, transparent 0%, #000 54%); }
-.promo__content p { color: #635244; }
-.promo__badge { box-shadow: 0 14px 30px -18px rgba(192, 82, 0, .48); }
-.reviews { background: linear-gradient(180deg, rgba(255, 174, 66, .08), transparent 75%); }
-.reviews__rating { border-color: rgba(187, 86, 0, .2); background: #fff7e9; }
-.review-card { background: linear-gradient(110deg, rgba(255, 183, 87, .12), transparent 48%), #fffdf9; box-shadow: 0 12px 34px rgba(55, 36, 19, .045); }
-.features { background: #f1e8dc; }
-.footer { background: radial-gradient(32% 90% at 0% 100%, rgba(255, 176, 94, .14), transparent 72%), #f1e8dc; }
-.catalog-page__glow, .about-page__glow, .offers-page__glow, .contact-page__glow { opacity: .35; }
-.catalog-call, .catalog-card, .card, .about-principle, .contact-map-wrap, .legal-document section { background-color: var(--bg-card); }
-.contact-info__card { background: linear-gradient(135deg, rgba(255,255,255,.9), rgba(255,250,242,.65)), var(--bg-card); }
-a.contact-info__card:hover { background: #fff6e8; }
-.contact-map-caption { border-color: var(--line); background: rgba(255, 251, 245, .96); }
-.catalog-intro__copy > p, .about-hero__copy > p, .about-fact, .legal-document p { color: #625244; }
-.category-pills button { color: #645344; background: rgba(93, 60, 30, .035); }
-.category-pills button:hover { color: var(--text); }
-.catalog-search, .catalog-sort select { color: var(--text); background: #fffdf9; }
-.catalog-search input::placeholder { color: #8b7b6b; }
-.catalog-sort option { color: var(--text); background: #fffdf9; }
-.catalog-note { background: linear-gradient(100deg, rgba(255, 177, 78, .12), rgba(255, 210, 145, .05)); }
-.catalog-note p { color: #625244; }
-.about-fact, .offer-menu-link, .offers-hero__copy > p { color: #625244; }
-.about-principle { background: linear-gradient(145deg, rgba(255, 255, 255, .9), rgba(255, 250, 242, .7) 62%), var(--bg-card); }
-.contact-card, .contact-bottom { background-color: #fffaf2; }
-.contact-map-wrap { background: #efe6d9; }
-.contact-map-caption { background: rgba(255, 251, 245, .95); color: var(--text); }
-.reviews__rating small, .admin-period { color: var(--muted); }
-.admin-page, .admin-login { background: radial-gradient(ellipse at 80% 0, rgba(255, 143, 41, .1), transparent 42%), var(--bg); }
-.admin-panel, .admin-login__card, .request-dialog, .cart-drawer { color: var(--text); background: #fffdf9; box-shadow: 0 16px 52px rgba(62, 41, 21, .1); }
-.admin-button { color: var(--text); background: #f1e7d9; }
-.admin-button:hover { background: #eadac7; }
-.admin-notice { color: #73430f; }
-.admin-dish { background: #fffaf2; }
-.admin-photo, .admin-dish input, .admin-dish select, .admin-login__card input, .request-dialog input, .request-dialog textarea, .admin-request select, .cart-checkout input:not([type="checkbox"]), .cart-checkout textarea { color: var(--text); background: #fff; border-color: rgba(57, 38, 23, .17); }
-.admin-dish input::placeholder, .request-dialog input::placeholder, .cart-checkout input::placeholder, .cart-checkout textarea::placeholder { color: #918171; }
-.admin-stats article { background: #f4ecdf; }
-.request-overlay { background: rgba(47, 34, 22, .4); }
-.request-dialog__close { background: #f0e7dc; }
-.cart-backdrop { background: rgba(47, 34, 22, .38); }
-.cart-item__controls button { background: #f4ede3; }
-.cart-delivery-hint, .cart-payment { background: #fff6e8; }
-.legal-page { background: radial-gradient(ellipse at 88% 0, rgba(244, 150, 54, .1), transparent 35%); }
-.legal-document section { background: rgba(255, 253, 249, .92); }
-.legal-placeholder { color: #8b4b00; }
-.photo-gallery { background: rgba(35, 26, 18, .82); }
-.photo-gallery span { color: #fff4e5; }
-.not-found { background: radial-gradient(ellipse at 50% 48%, rgba(255, 157, 51, .1), transparent 42%), var(--bg); }
 
 @media (max-width: 900px) {
   .header-cart--mobile { display: inline-flex; grid-column: 2; grid-row: 1; width: 42px; height: 42px; min-height: 42px; padding: 0; }
