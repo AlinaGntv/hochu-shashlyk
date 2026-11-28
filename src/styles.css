@@ -2540,9 +2540,12 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
 }
 
 .hero__media {
-  inset: 16px 20px 16px 55%;
-  -webkit-mask-image: none;
-  mask-image: none;
+  inset: 16px 20px 16px 45%;
+  border-color: rgba(255, 164, 28, .11);
+  border-radius: 30px;
+  box-shadow: 0 14px 42px rgba(0, 0, 0, .24), inset 0 0 0 1px rgba(255, 255, 255, .018);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 11%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 11%);
 }
 
 .promo__media {
@@ -2567,6 +2570,10 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
   pointer-events: none;
 }
 
+.hero__media::after {
+  background: linear-gradient(90deg, rgba(11, 10, 9, .38), rgba(11, 10, 9, .08) 22%, transparent 48%), linear-gradient(0deg, rgba(11, 10, 9, .1), transparent 35%);
+}
+
 .hero__media img,
 .promo__media img {
   filter: brightness(.84) saturate(1.06) contrast(1.03);
@@ -2579,6 +2586,10 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
     border-radius: 20px;
     -webkit-mask-image: linear-gradient(#000 60%, transparent);
     mask-image: linear-gradient(#000 60%, transparent);
+  }
+
+  .hero__media {
+    border-color: rgba(255, 164, 28, .11);
   }
 
   .hero__inner {
