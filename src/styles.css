@@ -2540,7 +2540,11 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
 }
 
 .hero__media {
-  inset: 16px 3.5% 16px 50%;
+  inset: auto 4% auto 53.5%;
+  top: 50%;
+  height: min(56vh, 460px);
+  transform: translateY(-50%);
+  border-radius: 28px;
   -webkit-mask-image: none;
   mask-image: none;
 }
@@ -2551,7 +2555,7 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
   mask-image: none;
 }
 
-.hero__content { max-width: 48%; }
+.hero__content { max-width: 45%; }
 .hero__title { font-size: clamp(38px, 5.5vw, 76px); }
 .promo__content { max-width: 48%; }
 .promo__title { font-size: clamp(32px, 4.5vw, 58px); }
@@ -2574,7 +2578,14 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
 
 @media (max-width: 900px) {
   .hero__media {
+    position: relative;
     inset: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    height: 300px;
+    transform: none;
     margin: 12px 14px 0;
     border-radius: 20px;
     -webkit-mask-image: none;
@@ -2600,4 +2611,11 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
     gap: 20px;
     padding: 36px 0 220px;
   }
+}
+@media (max-width: 600px) {
+  .hero__media { height: 235px; }
+}
+
+@media (max-width: 360px) {
+  .hero__media { height: 205px; }
 }
