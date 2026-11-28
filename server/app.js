@@ -66,12 +66,28 @@ async function ensureCurrentMenu() {
         try { await fs.access(savedFile); savedPhotos.set(item.name, item.photo) }
         catch { /* Missing upload: use the current catalog photo. */ }
       }
-      const updatedMenu = defaultMenu.map((group) => ({ ...group, items: group.items.map((item) => {
+      const savedGroups = new Map((Array.isArray(savedMenu) ? savedMenu : []).map((group) => [group.id, group]))
+      const defaultGroupIds = new Set(defaultMenu.map((group) => group.id))
+      const updatedMenu = defaultMenu.map((group) => {
+        const savedGroup = savedGroups.get(group.id)
+        const savedItems = new Map((savedGroup?.items || []).flatMap((item) => [[item.id || item.name, item], [item.name, item]]))
+        const defaultItemIds = new Set(group.items.flatMap((item) => [item.id || item.name, item.name]))
+        const items = group.items.map((item) => {
+          const savedItem = savedItems.get(item.id) || savedItems.get(item.name)
           const replaceWithCatalogPhoto = ['grill-pork-ribs', 'grill-pork-loin', 'grill-chicken-thigh', 'grill-turkey', 'grill-veal', 'side-suluguni', 'grill-lamb-pulp', 'grill-liver-fat-tail', 'lula-chicken'].includes(item.id)
-          const photo = replaceWithCatalogPhoto ? item.photo : savedPhotos.get(item.name) || item.photo || item.photos?.[0] || null
-          const photos = replaceWithCatalogPhoto ? item.photos : [photo, ...(Array.isArray(item.photos) ? item.photos : [])]
-          return { ...item, photo, photos: [...new Set(photos.filter(Boolean))] }
-        }) }))
+          const photo = replaceWithCatalogPhoto ? item.photo : savedPhotos.get(item.name) || savedItem?.photo || item.photo || item.photos?.[0] || null
+          const savedItemPhotos = Array.isArray(savedItem?.photos) ? savedItem.photos : []
+          const photos = replaceWithCatalogPhoto ? item.photos : [photo, ...savedItemPhotos, ...(item.photos || [])]
+          return { ...item, ...savedItem, text: item.text, photo, photos: [...new Set(photos.filter(Boolean))] }
+        })
+        for (const savedItem of savedGroup?.items || []) {
+          if (!defaultItemIds.has(savedItem.id) && !defaultItemIds.has(savedItem.name)) items.push(savedItem)
+        }
+        return { ...savedGroup, ...group, items }
+      })
+      for (const savedGroup of savedGroups.values()) {
+        if (!defaultGroupIds.has(savedGroup.id)) updatedMenu.push(savedGroup)
+      }
       await writeJson(menuFile, updatedMenu)
       await writeJson(menuRevisionFile, { revision: menuRevision })
     })().catch((error) => { menuInitialization = null; throw error })

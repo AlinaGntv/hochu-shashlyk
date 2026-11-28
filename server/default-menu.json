@@ -8,7 +8,7 @@
         "name": "Скумбрия",
         "weight": "100 г",
         "price": 170,
-        "text": "На мангале",
+        "text": "Сочная скумбрия с румяной корочкой и лёгким ароматом дымка.",
         "photo": "/images/menu/3990.webp",
         "photos": [
           "/images/menu/3990.webp",
@@ -24,7 +24,7 @@
         "name": "Дорадо",
         "weight": "100 г",
         "price": 270,
-        "text": "На мангале",
+        "text": "Нежная дорадо, приготовленная на мангале до золотистой корочки.",
         "photo": "/images/menu/3966.webp",
         "photos": [
           "/images/menu/3966.webp",
@@ -37,7 +37,7 @@
         "name": "Сибас",
         "weight": "100 г",
         "price": 270,
-        "text": "На мангале",
+        "text": "Мягкое мясо сибаса и деликатный аромат углей.",
         "photo": "/images/menu/3969.webp",
         "photos": [
           "/images/menu/3969.webp",
@@ -52,7 +52,7 @@
         "name": "Сёмга",
         "weight": "100 г",
         "price": 450,
-        "text": "На мангале",
+        "text": "Сочная сёмга с аппетитными следами гриля.",
         "photo": "/images/menu/3959.webp",
         "photos": [
           "/images/menu/3959.webp",
@@ -67,7 +67,7 @@
         "name": "Форель",
         "weight": "100 г",
         "price": 260,
-        "text": "На мангале",
+        "text": "Форель, обжаренная на мангале до нежной золотистой корочки.",
         "photo": "/images/menu/3986.webp",
         "photos": [
           "/images/menu/3986.webp",
@@ -86,7 +86,7 @@
         "name": "Картофель гриль",
         "weight": "200 г",
         "price": 200,
-        "text": "На мангале",
+        "text": "Золотистые ломтики картофеля с ароматом мангала.",
         "photo": "/images/menu/4025.webp",
         "photos": [
           "/images/menu/4025.webp",
@@ -101,7 +101,7 @@
         "name": "Овощи гриль",
         "weight": "200 г",
         "price": 280,
-        "text": "На мангале",
+        "text": "Овощи, приготовленные на огне до мягкости и лёгкой румяности.",
         "photo": "/images/menu/4043.webp",
         "photos": [
           "/images/menu/4043.webp",
@@ -115,7 +115,7 @@
         "name": "Шампиньоны гриль",
         "weight": "200 г",
         "price": 290,
-        "text": "На мангале",
+        "text": "Шампиньоны с сочной мякотью и аппетитными следами гриля.",
         "photo": "/images/menu/4048.webp",
         "photos": [
           "/images/menu/4048.webp",
@@ -130,7 +130,7 @@
         "name": "Овощи (баклажан, перец, помидор)",
         "weight": "—",
         "price": 450,
-        "text": "По 1 шт. каждого овоща",
+        "text": "Баклажан, перец и помидор, приготовленные на мангале — по одному овощу.",
         "photo": "/images/menu/4043.webp",
         "photos": [
           "/images/menu/4043.webp",
@@ -144,13 +144,18 @@
         "name": "Сулугуни на углях",
         "weight": "250 г",
         "price": 350,
-        "text": "На углях",
+        "text": "Сулугуни с тёплой тягучей серединой и румяной корочкой.",
         "photo": "/images/menu/suluguni.webp",
         "photos": [
           "/images/menu/suluguni.webp"
         ]
       }
     ]
+  },
+  {
+    "id": "bread",
+    "title": "Хлеб и выпечка",
+    "items": []
   },
   {
     "id": "grill",
@@ -161,7 +166,7 @@
         "name": "Куриные крылья",
         "weight": "300 г",
         "price": 300,
-        "text": "На мангале",
+        "text": "Сочные крылышки с румяной корочкой, приготовленные на мангале.",
         "photo": "/images/menu/4079.webp",
         "photos": [
           "/images/menu/4079.webp",
@@ -176,7 +181,7 @@
         "name": "Куриная грудка",
         "weight": "300 г",
         "price": 420,
-        "text": "На мангале",
+        "text": "Нежная куриная грудка с аппетитными следами гриля.",
         "photo": "/images/menu/4010.webp",
         "photos": [
           "/images/menu/4010.webp",
@@ -192,7 +197,7 @@
         "name": "Куриное бедро",
         "weight": "100 г",
         "price": 120,
-        "text": "На мангале",
+        "text": "Сочное куриное бедро с румяной корочкой с мангала.",
         "photo": "/images/menu/chicken-thigh.webp",
         "photos": [
           "/images/menu/chicken-thigh.webp"
@@ -203,7 +208,7 @@
         "name": "Индейка",
         "weight": "300 г",
         "price": 580,
-        "text": "На мангале",
+        "text": "Нежное филе индейки, приготовленное на открытом огне.",
         "photo": "/images/menu/turkey.webp",
         "photos": [
           "/images/menu/turkey.webp"
@@ -214,7 +219,7 @@
         "name": "Телятина",
         "weight": "100 г",
         "price": 280,
-        "text": "На мангале",
+        "text": "Мягкая телятина с лёгким ароматом углей.",
         "photo": "/images/menu/veal.webp",
         "photos": [
           "/images/menu/veal.webp"
@@ -225,7 +230,7 @@
         "name": "Свиная шея",
         "weight": "300 г",
         "price": 480,
-        "text": "На мангале",
+        "text": "Сочная свиная шея с насыщенным вкусом и румяной корочкой.",
         "photo": "/images/menu/4019.webp",
         "photos": [
           "/images/menu/4019.webp",
@@ -239,7 +244,7 @@
         "name": "Свиные рёбра",
         "weight": "300 г",
         "price": 420,
-        "text": "На мангале",
+        "text": "Мясистые свиные рёбра, поджаренные на мангале.",
         "photo": "/images/menu/pork-ribs.webp",
         "photos": [
           "/images/menu/pork-ribs.webp"
@@ -250,7 +255,7 @@
         "name": "Свиная корейка",
         "weight": "100 г",
         "price": 140,
-        "text": "На мангале",
+        "text": "Свиная корейка с сочной серединой и золотистыми полосками гриля.",
         "photo": "/images/menu/pork-loin.webp",
         "photos": [
           "/images/menu/pork-loin.webp"
@@ -261,7 +266,7 @@
         "name": "Баранья корейка",
         "weight": "300 г",
         "price": 900,
-        "text": "На мангале",
+        "text": "Ароматная баранья корейка с румяной корочкой.",
         "photo": "/images/menu/4068.webp",
         "photos": [
           "/images/menu/4068.webp",
@@ -275,7 +280,7 @@
         "name": "Баранья мякоть",
         "weight": "300 г",
         "price": 800,
-        "text": "На мангале",
+        "text": "Нежные кусочки баранины, приготовленные на углях.",
         "photo": "/images/menu/lamb-pulp.webp",
         "photos": [
           "/images/menu/lamb-pulp.webp"
@@ -286,7 +291,7 @@
         "name": "Бараньи семечки",
         "weight": "300 г",
         "price": 720,
-        "text": "На мангале",
+        "text": "Небольшие бараньи рёбрышки с ярким ароматом мангала.",
         "photo": "/images/menu/4012.webp",
         "photos": [
           "/images/menu/4012.webp",
@@ -298,7 +303,7 @@
         "name": "Печень курдюк",
         "weight": "300 г",
         "price": 380,
-        "text": "На мангале",
+        "text": "Печень с курдюком, приготовленная на мангале до румяной корочки.",
         "photo": "/images/menu/liver-fat-tail.webp",
         "photos": [
           "/images/menu/liver-fat-tail.webp"
@@ -315,7 +320,7 @@
         "name": "Люля куриный",
         "weight": "250 г",
         "price": 300,
-        "text": "На мангале",
+        "text": "Сочный куриный люля-кебаб с румяной корочкой с мангала.",
         "photo": "/images/menu/chicken-lula.webp",
         "photos": [
           "/images/menu/chicken-lula.webp"
@@ -326,7 +331,7 @@
         "name": "Люля говяжий",
         "weight": "250 г",
         "price": 420,
-        "text": "На мангале",
+        "text": "Говяжий люля-кебаб с насыщенным мясным вкусом и ароматом углей.",
         "photo": "/images/menu/3955.webp",
         "photos": [
           "/images/menu/3955.webp",
@@ -339,7 +344,7 @@
         "name": "Люля бараний",
         "weight": "250 г",
         "price": 490,
-        "text": "На мангале",
+        "text": "Бараний люля-кебаб, приготовленный на открытом огне.",
         "photo": "/images/menu/3955.webp",
         "photos": [
           "/images/menu/3955.webp",
@@ -352,7 +357,7 @@
         "name": "Люля свиной",
         "weight": "250 г",
         "price": 400,
-        "text": "На мангале",
+        "text": "Сочный свиной люля-кебаб с аппетитной корочкой.",
         "photo": "/images/menu/3955.webp",
         "photos": [
           "/images/menu/3955.webp",
@@ -371,7 +376,7 @@
         "name": "Ассорти на 4–6 персон (M)",
         "weight": "3,5 кг",
         "price": 4390,
-        "text": "Мяса 2,4 кг · вес указан в сыром виде",
+        "text": "Большой набор для компании. Мяса — 2,4 кг; вес указан в сыром виде.",
         "photo": "/images/menu/3940.webp",
         "photos": [
           "/images/menu/3940.webp",
@@ -386,7 +391,7 @@
         "name": "Ассорти на 6–8 персон (L)",
         "weight": "4,7 кг",
         "price": 6780,
-        "text": "Мяса 3,3 кг · вес указан в сыром виде",
+        "text": "Набор для дружеской компании. Мяса — 3,3 кг; вес указан в сыром виде.",
         "photo": "/images/menu/3940.webp",
         "photos": [
           "/images/menu/3940.webp",
@@ -401,7 +406,7 @@
         "name": "Ассорти на 12–14 персон (XXL)",
         "weight": "9 кг",
         "price": 11150,
-        "text": "Мяса 7,2 кг · вес указан в сыром виде",
+        "text": "Большое ассорти для застолья. Мяса — 7,2 кг; вес указан в сыром виде.",
         "photo": "/images/menu/3940.webp",
         "photos": [
           "/images/menu/3940.webp",
@@ -416,7 +421,7 @@
         "name": "Ассорти из люля-кебабов",
         "weight": "3,3 кг",
         "price": 4050,
-        "text": "Мяса 1,8 кг · вес указан в сыром виде",
+        "text": "Набор из люля-кебабов для компании. Мяса — 1,8 кг; вес указан в сыром виде.",
         "photo": "/images/menu/3936.webp",
         "photos": [
           "/images/menu/3936.webp",
@@ -428,7 +433,7 @@
         "name": "Ассорти на 6–8 персон без свинины",
         "weight": "5,2 кг",
         "price": 6810,
-        "text": "Мяса 3,9 кг · вес указан в сыром виде",
+        "text": "Ассорти без свинины для компании. Мяса — 3,9 кг; вес указан в сыром виде.",
         "photo": "/images/menu/3948.webp",
         "photos": [
           "/images/menu/3948.webp",
@@ -448,7 +453,7 @@
         "name": "Белый чесночный",
         "weight": "",
         "price": 60,
-        "text": "Соус к блюдам на мангале",
+        "text": "Нежный белый соус с выразительным чесночным вкусом.",
         "photo": "/images/menu/3939.webp",
         "photos": [
           "/images/menu/3939.webp",
@@ -461,7 +466,7 @@
         "name": "Наршараб",
         "weight": "",
         "price": 60,
-        "text": "Соус к блюдам на мангале",
+        "text": "Густой гранатовый соус с ярким кисло-сладким вкусом.",
         "photo": "/images/menu/3932.webp",
         "photos": [
           "/images/menu/3932.webp",
@@ -474,7 +479,7 @@
         "name": "Шашлычный",
         "weight": "",
         "price": 60,
-        "text": "Соус к блюдам на мангале",
+        "text": "Томатный соус с пряным вкусом — к мясу и овощам с мангала.",
         "photo": "/images/menu/3926.webp",
         "photos": [
           "/images/menu/3926.webp",

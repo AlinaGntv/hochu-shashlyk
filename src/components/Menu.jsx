@@ -13,7 +13,7 @@ export default function Menu({ initialMenu } = {}) {
   const [page, setPage] = useState(0)
   const [pages, setPages] = useState(1)
   const track = useRef(null)
-  const items = menu.find((c) => c.id === tab).items
+  const items = menu.find((c) => c.id === tab)?.items || []
 
   useEffect(() => { if (!menu.some((group) => group.id === tab)) setTab(menu[0].id) }, [menu, tab])
 
@@ -36,7 +36,7 @@ export default function Menu({ initialMenu } = {}) {
   }, [items.length])
 
   useEffect(() => {
-    track.current.scrollLeft = 0
+    if (track.current) track.current.scrollLeft = 0
     measure()
     window.addEventListener('resize', measure)
     return () => window.removeEventListener('resize', measure)
@@ -70,7 +70,7 @@ export default function Menu({ initialMenu } = {}) {
           </a>
         </div>
 
-        <div className="carousel">
+        {items.length ? <div className="carousel">
           <button
             className="carousel__arrow carousel__arrow--prev"
             onClick={() => scrollToPage(page - 1)}
@@ -112,7 +112,12 @@ export default function Menu({ initialMenu } = {}) {
           >
             <Icon name="chevronRight" size={20} />
           </button>
-        </div>
+        </div> : (
+          <div className="menu-empty">
+            <Icon name="flame" size={24} />
+            <div><strong>Раздел «Хлеб и выпечка» скоро пополнится</strong><p>Добавим сюда армянский лаваш, лепёшки, хачапури и другие позиции.</p></div>
+          </div>
+        )}
 
         {pages > 1 && (
           <div className="dots">

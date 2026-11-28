@@ -1661,6 +1661,21 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
   display: none;
 }
 
+.menu-empty {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 132px;
+  padding: 24px 28px;
+  border: 1px dashed rgba(255, 164, 28, .28);
+  border-radius: var(--radius);
+  color: var(--amber);
+  background: radial-gradient(55% 140% at 0% 100%, rgba(255, 90, 0, .13), transparent 75%), var(--bg-card);
+}
+
+.menu-empty strong { color: var(--text); font-size: 17px; }
+.menu-empty p { margin-top: 5px; color: var(--muted); font-size: 14px; }
+
 .carousel__arrow {
   position: absolute;
   top: 50%;
@@ -2659,6 +2674,9 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
   .hero__text { max-width: 100%; margin-top: 15px; font-size: 15px; line-height: 1.5; }
   .hero__weight { margin-top: 10px; font-size: 14px; }
   .hero__pager { margin-top: 20px; }
+  .menu-empty { align-items: flex-start; gap: 12px; min-height: 0; padding: 17px; }
+  .menu-empty strong { font-size: 14px; }
+  .menu-empty p { font-size: 12px; line-height: 1.5; }
 }
 
 @media (max-width: 360px) {

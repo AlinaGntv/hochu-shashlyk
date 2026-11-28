@@ -182,8 +182,8 @@ export default function MenuPage({ initialMenu } = {}) {
             ) : (
               <div className="catalog-empty">
                 <Icon name="flame" size={28} />
-                <h3>Такого блюда пока не нашли</h3>
-                <p>Попробуй изменить запрос или выбрать другую категорию.</p>
+                <h3>{category === 'bread' && !query.trim() ? 'Раздел скоро пополнится' : 'Такого блюда пока не нашли'}</h3>
+                <p>{category === 'bread' && !query.trim() ? 'Добавим армянский лаваш, лепёшки, хачапури и другую выпечку.' : 'Попробуй изменить запрос или выбрать другую категорию.'}</p>
                 <button type="button" onClick={() => { setQuery(''); setCategory('all'); setPage(1) }}>Сбросить фильтры</button>
               </div>
             )}
