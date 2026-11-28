@@ -48,12 +48,12 @@ function ProductCard({ item, index, onOrder }) {
         </div>
         <div className="catalog-card__foot">
           <div>
-            <strong>{item.price.toLocaleString('ru-RU')} ₽</strong>
+            <strong className={item.price == null ? 'catalog-card__price-pending' : ''}>{item.price == null ? 'Цена уточняется' : `${item.price.toLocaleString('ru-RU')} ₽`}</strong>
             <span>{item.weight}</span>
           </div>
-          <button className="catalog-card__order" type="button" onClick={() => onOrder(item)} aria-label={`Добавить в корзину: ${item.name}`}>
+          {item.price == null ? <a className="catalog-card__order" href={site.phoneHref} aria-label={`Уточнить цену: ${item.name}`}>Уточнить цену <Icon name="phone" size={15} /></a> : <button className="catalog-card__order" type="button" onClick={() => onOrder(item)} aria-label={`Добавить в корзину: ${item.name}`}>
             В корзину <Icon name="plus" size={16} />
-          </button>
+          </button>}
         </div>
       </div>
     </article>
@@ -85,8 +85,8 @@ export default function MenuPage({ initialMenu } = {}) {
         `${item.name} ${item.text} ${item.category}`.toLocaleLowerCase('ru-RU').includes(normalizedQuery),
       )
 
-    if (sort === 'price-up') return source.sort((a, b) => a.price - b.price)
-    if (sort === 'price-down') return source.sort((a, b) => b.price - a.price)
+    if (sort === 'price-up') return source.sort((a, b) => (a.price == null) - (b.price == null) || (a.price ?? 0) - (b.price ?? 0))
+    if (sort === 'price-down') return source.sort((a, b) => (a.price == null) - (b.price == null) || (b.price ?? 0) - (a.price ?? 0))
     return source.sort((a, b) => Number(b.badge === 'hit') - Number(a.badge === 'hit'))
   }, [category, query, sort])
   const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE)
@@ -183,7 +183,7 @@ export default function MenuPage({ initialMenu } = {}) {
               <div className="catalog-empty">
                 <Icon name="flame" size={28} />
                 <h3>{category === 'bread' && !query.trim() ? 'Раздел скоро пополнится' : 'Такого блюда пока не нашли'}</h3>
-                <p>{category === 'bread' && !query.trim() ? 'Добавим армянский лаваш, лепёшки, хачапури и другую выпечку.' : 'Попробуй изменить запрос или выбрать другую категорию.'}</p>
+                <p>{category === 'bread' && !query.trim() ? 'Позвоним и подскажем, какие позиции доступны сегодня.' : 'Попробуй изменить запрос или выбрать другую категорию.'}</p>
                 <button type="button" onClick={() => { setQuery(''); setCategory('all'); setPage(1) }}>Сбросить фильтры</button>
               </div>
             )}

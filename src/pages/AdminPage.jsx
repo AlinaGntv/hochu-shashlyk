@@ -56,7 +56,7 @@ function DishEditor({ groups, setGroups, onSave, saving }) {
     setGroups(next)
   }
   function addDish() {
-    const next = clone(groups); next[selected].items.push({ id: crypto.randomUUID(), name: '', text: '', ingredients: '', price: 0, weight: '', badge: '', photo: null }); setGroups(next); setPage(Math.ceil(next[selected].items.length / DISHES_PER_PAGE))
+    const next = clone(groups); next[selected].items.push({ id: crypto.randomUUID(), name: '', text: '', ingredients: '', price: null, weight: '', badge: '', photo: null }); setGroups(next); setPage(Math.ceil(next[selected].items.length / DISHES_PER_PAGE))
   }
   function removeDish(index) {
     const dish = dishes[index]; setGroups(groups.map((group) => ({ ...group, items: group.items.filter((item) => item.id !== dish.id) })))
@@ -80,7 +80,7 @@ function DishEditor({ groups, setGroups, onSave, saving }) {
         <label>Название<input value={item.name} onChange={(e) => changeDish(dishIndex, 'name', e.target.value)} /></label>
         <label>Описание<input value={item.text || ''} onChange={(e) => changeDish(dishIndex, 'text', e.target.value)} /></label>
         <label>Состав<input value={item.ingredients || ''} onChange={(e) => changeDish(dishIndex, 'ingredients', e.target.value)} placeholder="Например: свинина, лук, специи" /></label>
-        <div className="admin-inline-fields"><label>Цена, ₽<input type="number" min="0" value={item.price} onChange={(e) => changeDish(dishIndex, 'price', Number(e.target.value))} /></label><label>Вес<input value={item.weight || ''} onChange={(e) => changeDish(dishIndex, 'weight', e.target.value)} /></label><label>Метка<select value={item.badge || ''} onChange={(e) => changeDish(dishIndex, 'badge', e.target.value)}><option value="">Нет</option><option value="hit">Хит</option><option value="new">Новинка</option></select></label></div>
+        <div className="admin-inline-fields"><label>Цена, ₽<input type="number" min="0" value={item.price ?? ''} onChange={(e) => changeDish(dishIndex, 'price', e.target.value === '' ? null : Number(e.target.value))} /></label><label>Вес<input value={item.weight || ''} onChange={(e) => changeDish(dishIndex, 'weight', e.target.value)} /></label><label>Метка<select value={item.badge || ''} onChange={(e) => changeDish(dishIndex, 'badge', e.target.value)}><option value="">Нет</option><option value="hit">Хит</option><option value="new">Новинка</option></select></label></div>
       </div><button className="admin-delete" onClick={() => removeDish(dishIndex)} aria-label={`Удалить ${item.name || 'блюдо'}`}>×</button>
     </article>})}</div>
     {dishes.length > 0 && <div className="admin-list-meta">Показано {pageStart + 1}–{Math.min(pageStart + DISHES_PER_PAGE, dishes.length)} из {dishes.length} блюд</div>}

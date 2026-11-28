@@ -92,7 +92,12 @@ export const menu = [
   {
     id: 'bread',
     title: 'Хлеб и выпечка',
-    items: [],
+    items: [
+      { id: 'bread-loaf', name: 'Хлеб', text: 'Свежий хлеб к шашлыку и блюдам с мангала.', ingredients: '', price: null, weight: '—', badge: '', photo: null },
+      { id: 'bread-lavash', name: 'Армянский лаваш', text: 'Тонкий мягкий лаваш — к мясу и овощам с мангала.', ingredients: '', price: null, weight: '—', badge: '', photo: null },
+      { id: 'bread-flatbread', name: 'Лепёшка', text: 'Румяная лепёшка с мягким мякишем, хороша к шашлыку.', ingredients: '', price: null, weight: '—', badge: '', photo: null },
+      { id: 'bread-khachapuri', name: 'Хачапури', text: 'Тёплая выпечка с сырной начинкой.', ingredients: '', price: null, weight: '—', badge: '', photo: null },
+    ],
   },
   {
     id: 'grill',

@@ -141,9 +141,9 @@ app.put('/api/admin/menu', requireAdmin, async (req, res, next) => {
     const groups = req.body
     if (!Array.isArray(groups) || groups.some((g) => !g.id || !g.title || !Array.isArray(g.items))) return res.status(400).json({ error: 'Проверьте категории меню.' })
     for (const group of groups) for (const item of group.items) {
-      if (!item.id || !item.name?.trim() || !Number.isFinite(Number(item.price)) || Number(item.price) < 0) return res.status(400).json({ error: 'У каждого блюда должны быть название и цена.' })
+      if (!item.id || !item.name?.trim() || (item.price != null && item.price !== '' && (!Number.isFinite(Number(item.price)) || Number(item.price) < 0))) return res.status(400).json({ error: 'Проверьте название и цену блюда.' })
       item.name = item.name.trim(); item.text = String(item.text || '').trim(); item.ingredients = String(item.ingredients || '').trim()
-      item.price = Number(item.price); item.weight = String(item.weight || '').trim()
+      item.price = item.price == null || item.price === '' ? null : Number(item.price); item.weight = String(item.weight || '').trim()
     }
     await writeJson(menuFile, groups)
     res.json({ ok: true })

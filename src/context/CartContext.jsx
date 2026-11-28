@@ -20,6 +20,7 @@ export function CartProvider({ children }) {
   useEffect(() => { if (ready) localStorage.setItem(STORAGE_KEY, JSON.stringify(items)) }, [items, ready])
 
   const addItem = useCallback((product) => {
+    if (product?.price == null || !Number.isFinite(Number(product.price))) return
     const id = productId(product)
     setItems((current) => {
       const found = current.find((item) => item.id === id)

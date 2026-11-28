@@ -3,6 +3,7 @@ import useMenu from '../hooks/useMenu.js'
 import { Icon } from './ui.jsx'
 import PhotoGallery from './PhotoGallery.jsx'
 import { useCart } from '../context/CartContext.jsx'
+import { site } from '../data/site.js'
 
 const BADGES = { hit: 'Хит', new: 'New' }
 
@@ -93,11 +94,9 @@ export default function Menu({ initialMenu } = {}) {
                   <h3>{item.name}</h3>
                   <p>{item.text}{item.ingredients && <span className="card__ingredients">Состав: {item.ingredients}</span>}</p>
                   <div className="card__foot">
-                    <span className="card__price">{item.price.toLocaleString('ru-RU')} ₽</span>
+                    <span className={`card__price${item.price == null ? ' card__price--pending' : ''}`}>{item.price == null ? 'Цена уточняется' : `${item.price.toLocaleString('ru-RU')} ₽`}</span>
                     <span className="card__weight">{item.weight}</span>
-                    <button className="card__add" onClick={() => cart.addItem(item)} aria-label={`Добавить «${item.name}»`}>
-                      <Icon name="plus" size={18} />
-                    </button>
+                    {item.price == null ? <a className="card__add card__add--call" href={site.phoneHref} aria-label={`Уточнить цену: ${item.name}`}><Icon name="phone" size={17} /></a> : <button className="card__add" onClick={() => cart.addItem(item)} aria-label={`Добавить «${item.name}»`}><Icon name="plus" size={18} /></button>}
                   </div>
                 </div>
               </li>

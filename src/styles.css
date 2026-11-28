@@ -848,6 +848,7 @@ button {
 
 .catalog-card__foot > div { display: grid; gap: 2px; }
 .catalog-card__foot strong { color: var(--amber); font-size: 21px; line-height: 1.15; white-space: nowrap; }
+.catalog-card__foot strong.catalog-card__price-pending { font-size: 15px; white-space: normal; }
 .catalog-card__foot > div span { color: var(--muted); font-size: 12px; }
 
 .catalog-card__order {
@@ -1774,6 +1775,7 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
   color: var(--amber);
   white-space: nowrap;
 }
+.card__price--pending { max-width: 118px; font-size: 14px; line-height: 1.25; white-space: normal; }
 
 .card__weight {
   font-size: 14px;
@@ -1791,6 +1793,7 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
   border-radius: 11px;
   transition: background 0.2s, color 0.2s;
 }
+.card__add--call { flex: 0 0 40px; }
 
 .card__add:hover {
   background: var(--orange);
