@@ -2592,6 +2592,25 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
     mask-image: none;
   }
 
+  .hero__content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero__title {
+    font-size: clamp(42px, 9vw, 72px);
+  }
+
+  .hero .sticker,
+  .hero .sticker--price {
+    white-space: nowrap;
+  }
+
+  .hero .sticker--price {
+    align-self: flex-start;
+    margin-right: 0;
+  }
+
   .hero__inner {
     margin-top: 0;
     padding-top: 8px;
@@ -2613,7 +2632,23 @@ a.contact-info__card:hover .contact-info__text em svg { transform: translateX(3p
   }
 }
 @media (max-width: 600px) {
-  .hero__media { height: 235px; }
+  .hero__media {
+    height: clamp(185px, 48vw, 235px);
+    margin: 10px 12px 0;
+    border-radius: 18px;
+  }
+
+  .hero__inner {
+    padding: 8px 0 30px;
+  }
+
+  .hero__content { gap: 0; }
+  .hero__title { margin: 8px 0 2px; font-size: clamp(36px, 10vw, 58px); }
+  .hero .sticker { padding: 6px 13px; font-size: 16px; }
+  .hero .sticker--price { margin-top: 2px; padding: 6px 14px; font-size: clamp(19px, 5.5vw, 25px); }
+  .hero__text { max-width: 100%; margin-top: 15px; font-size: 15px; line-height: 1.5; }
+  .hero__weight { margin-top: 10px; font-size: 14px; }
+  .hero__pager { margin-top: 20px; }
 }
 
 @media (max-width: 360px) {
